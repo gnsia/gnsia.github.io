@@ -159,9 +159,9 @@ A link to the [kramdown hp].
 
 ## 입력
 ```
-![Logo](https://github.com/gnsia/gnsia.github.io/blob/master/assets/img/logo.png)
+![Logo](/assets/img/logo.png)
 ```
-![Logo](https://github.com/gnsia/gnsia.github.io/blob/master/assets/img/logo.png)
+![Logo](/assets/img/logo.png)
 
 ---
 
@@ -188,5 +188,44 @@ A link to the [kramdown hp].
 >
 > ## blockquote내의 헤더
 > 헤더뒤 기본글
+
+---
+
+# Footnotes
+각주를 선언하여 페이지 맨 아래에서 설명해주는 방식,\\
+나무위키에서 자주보던 방식이다. ``[^1]``
+
+## 입력
+```
+각주1 선언부분 a footnote[^1].  
+각주2 선언부분 a footnote[^2].
+
+[^1]: 각주에 대한 설명 내용 부분 (문서 최하단)
+[^2]: 각주에 대한 설명 내용 부분 (문서 최하단)
+```
+
+## 출력
+각주1 선언부분 a footnote[^1].  
+각주2 선언부분 a footnote[^2].
+
+[^1]: 각주에 대한 설명 내용 부분 (문서 최하단)
+[^2]: 각주에 대한 설명 내용 부분 (문서 최하단)
+
+---
+
+# Inline code
+문장내에서 특정 문자를 escape 해준다.\\
+
+## 입력
+```
+문장내의 `###` 사용을 무시함
+
+문장내의 `` `code` `` 사용을 무시함
+```
+
+## 출력
+문장내의 `###` 사용을 무시함
+
+문장내의 ``code`` 사용을 무시함
 
 ---
