@@ -22,10 +22,10 @@ title: Hand-stencil
 email: gnsia@naver.com
 description: >- # this means to ignore newlines until "baseurl:"
   Draw it yourself.
-baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "gnsia.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://gnsia.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: none
-github_username:  gnsia
+github_username: gnsia
 
 # Build settings
 theme: minima
