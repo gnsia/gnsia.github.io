@@ -102,6 +102,20 @@ stencil
 
 ---
 
+# Bold, Italic, strike
+문장 내 단어 강조하기
+``<b>`` ``<i>`` ``<s>``
+
+## 입력
+```
+__진하게__, _기울이기_, ~~아닌가?~~
+```
+
+## 출력
+__진하게__, _기울이기_, ~~아닌가?~~
+
+---
+
 # Link
 다양한 방식으로 링크를 지원한다.``<a>``
 
@@ -138,17 +152,16 @@ A link to the [kramdown hp].
 
 ---
 
-# Bold, Italic, strike
-문장 내 단어 강조하기
-``<b>`` ``<i>`` ``<s>``
+# Image
+이미지 첨부하기.``<img>``\\
+(gibhub 저장소의 이미지 소스 주소를 연결)
+
 
 ## 입력
 ```
-__진하게__, _기울이기_, ~~아닌가?~~
+![Logo](https://github.com/gnsia/gnsia.github.io/blob/master/assets/img/logo.png)
 ```
-
-## 출력
-__진하게__, _기울이기_, ~~아닌가?~~
+![Logo](https://github.com/gnsia/gnsia.github.io/blob/master/assets/img/logo.png)
 
 ---
 
@@ -177,5 +190,3 @@ __진하게__, _기울이기_, ~~아닌가?~~
 > 헤더뒤 기본글
 
 ---
-
-#
