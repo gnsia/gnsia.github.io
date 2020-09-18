@@ -28,9 +28,12 @@ url: "https://gnsia.github.io" # the base hostname & protocol for your site, e.g
 github_username: gnsia
 
 # Build settings
+markdown: kramdown
 theme: minima
+asset_url: /assets
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
