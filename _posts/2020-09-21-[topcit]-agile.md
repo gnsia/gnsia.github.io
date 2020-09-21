@@ -14,7 +14,7 @@ categories: topcit
 # 에자일 방법론??
 
 
-![agile](/assets/img/2020-09-21-[topcit]-agile/agile-05.jpg)
+![agile](/assets/img/2020-09-21-[topcit]-agile/agile-05.png)
 
 - 애자일은 기민하고 좋은 것을 빠르고 낭비없게 만드는 것.
 - 전통적인 폭포수 모델, 순차적인 개발방법을 대체하는 또 다른 방법이다.
