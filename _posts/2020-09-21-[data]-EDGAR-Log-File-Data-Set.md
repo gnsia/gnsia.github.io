@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[CONAN] EDGAR Log File Data"
-categories: conan
+title: "[DATA] EDGAR Log File Data"
+categories: data
 ---
 - 1
 {:toc}
