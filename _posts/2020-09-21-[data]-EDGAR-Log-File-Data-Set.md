@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[DATA] EDGAR Log File Data"
+title: "[Data] EDGAR Log File Data"
 categories: data
 ---
 - 1
