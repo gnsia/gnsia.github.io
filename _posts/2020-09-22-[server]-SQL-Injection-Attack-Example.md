@@ -271,7 +271,7 @@ $users = $wpdb->get_results( "SELECT * FROM users WHERE user_id=$id");
 
 조사를 통해서 이 공격을 이끌어낸 사건의 순서를 그려 볼 수 있다.
 
-![sql-injection-log](assets\img\2020-09-22-[server]-SQL-Injection-Attack-Example\sql-injection-log-01.png)
+![sql-injection-log](/assets/img/2020-09-22-[server]-SQL-Injection-Attack-Example/sql-injection-log-01.png)
 
 공격자는 누구인지에 대한 몇 가지 궁금증이 남았다. 이 경우는 오직 공격자의 아이피 주소를 아는 경우에만 알아 낼 수 있다. 실제 인물의 신분으로 연관되는 확실한 증거를 남기지 않는 한 공격내용을 통해 공격자를 찾기란 매우 어렵다. 공격자들은 자신들의 진짜 위치를 감추고 대부분의 공격을 토르와 같은 익명의 네트워크를 통해 지휘하고 주기적으로 프록시를 변경한다는 것을 기억하자.
 
