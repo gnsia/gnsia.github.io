@@ -10,4 +10,4 @@ permalink: /about/
 한 걸음 한 걸음 나아가요.\\
 천천히, 꾸준히, 스스로.\\
 Better than yesterday.\\
-Draw it yourself!\\
+Draw it yourself!\
