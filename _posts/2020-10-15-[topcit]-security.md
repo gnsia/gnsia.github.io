@@ -260,6 +260,8 @@ categories : topcit
 ### strcpy vs strncpy
 - C,C++에서
 
+---
+
 # 데이터 보안
 
 ## 데이터베이스 암호화 유형
@@ -288,3 +290,5 @@ categories : topcit
 
 ### Secure FTP를 사용해야한다.
 - SFTP
+
+---
