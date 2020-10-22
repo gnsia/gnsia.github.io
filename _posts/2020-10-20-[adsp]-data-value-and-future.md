@@ -1,6 +1,6 @@
 ---
 layout : post
-title : "[ADsP] 데이터의 가치와 미래"
+title : "[ADsP] 빅데이터의 이해"
 categories : adsp
 ---
 
