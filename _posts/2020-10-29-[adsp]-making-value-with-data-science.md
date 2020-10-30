@@ -1,6 +1,6 @@
 ---
 layout : post
-title : "[ADsP] 가치창조를 위한 데이터 사이언스와 전략"
+title : "[ADsP] 빅데이터 분석과 전략 인사이트"
 categories : adsp
 ---
 
@@ -9,7 +9,7 @@ categories : adsp
 
 ---
 
-### 들어가면
+### 들어가며
 
 - 매일 아침 한 시간
 - 한달 동안 ADsP 준비
