@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
@@ -10,6 +11,8 @@ layout: default
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {{ page.date | date: date_format }}
       </time>
+      
+      <!-- timestamp -->
       {%- if page.modified_date -%}
         ~
         {%- assign mdate = page.modified_date | date_to_xmlschema -%}
@@ -17,13 +20,17 @@ layout: default
           {{ mdate | date: date_format }}
         </time>
       {%- endif -%}
+      
+      <!-- author -->
       {%- if page.author -%}
         • {% for author in page.author %}
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
             {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
-      {%- endif -%}</p>
+      {%- endif -%}
+      
+    </p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
