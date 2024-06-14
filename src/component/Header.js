@@ -9,8 +9,7 @@ export default class Header extends Component {
             <nav data-component="nav">
                 <a href="#" data-view="playground">Playground</a>
                 <a href="#" data-view="about">About</a>
-            </nav>
-            
+            </nav>  
         `;
     }
     mounted() {
@@ -21,7 +20,8 @@ export default class Header extends Component {
         this.$target.addEventListener('click', e => {
             e.preventDefault();
             if(e.target.tagName === 'A') {
-                changeViewHandler(e.target.dataset.view);
+                const view = e.target.dataset;
+                changeViewHandler(view);
             }
         })
     }
