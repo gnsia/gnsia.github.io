@@ -23,11 +23,12 @@ export default class App extends Component{
 
   mounted() {
     const { view } = this.state;
+    const { changeViewHandler } = this;
 
     const $header = this.$target.querySelector('[data-component="header"]');
     new Header($header, { 
       view, 
-      changeViewHandler: this.changeViewHandler.bind(this),
+      changeViewHandler: changeViewHandler.bind(this),
     });
 
     const $footer = this.$target.querySelector('[data-component="footer"]');

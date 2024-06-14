@@ -4,15 +4,25 @@ export default class Header extends Component {
     template() {
         return `
             <h1> 
-                Hand-Stencil Playground
+                Hand-Stencil
             </h1>
             <nav data-component="nav">
-                <a>About</a>
+                <a href="#" data-view="playground">Playground</a>
+                <a href="#" data-view="about">About</a>
             </nav>
             
         `;
     }
     mounted() {
 
+    }
+    setEvent() {
+        const { changeViewHandler } = this.props;
+        this.$target.addEventListener('click', e => {
+            e.preventDefault();
+            if(e.target.tagName === 'A') {
+                changeViewHandler(e.target.dataset.view);
+            }
+        })
     }
 }
