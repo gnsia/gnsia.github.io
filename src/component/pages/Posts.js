@@ -6,6 +6,7 @@ export default class Posts extends Component {
     setup() {
         this.state = {
             mode: 'list', // list, detail
+            date: '',
         }
     }
     mounted() {
@@ -38,5 +39,8 @@ export default class Posts extends Component {
     }
     changeModeHandler(mode) {
         this.setState({ mode });
+    }
+    changeDateHandler(date) {
+        this.setState({ date });
     }
 }

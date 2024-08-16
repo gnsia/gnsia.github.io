@@ -8,12 +8,23 @@ export default class PostList extends Component {
             <ol>
             ${POST_LIST.map(post => `
                 <li>
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" data-date="${post.date}">
                         [${post.date}]-${post.title}
                     </a>
                 </li>
             `)}
             </ol>
         `;
+    }
+    setEvent() {
+        const { $target } = this;
+        const { changeModeHandler, changeDateHandler } = this.props;
+        $target.addEventListener('click', ({ target }) => {
+            if(target.tagName === 'A') {
+                const { date } = target.dataset;
+                changeDateHandler(date);
+                changeModeHandler('detail');
+            }
+        });
     }
 }
