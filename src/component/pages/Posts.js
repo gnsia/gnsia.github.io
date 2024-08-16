@@ -10,7 +10,7 @@ export default class Posts extends Component {
         }
     }
     mounted() {
-        const { $target, changeModeHandler } = this;
+        const { $target, changeModeHandler, changeDateHandler } = this;
         const { mode } = this.state;
         const $child = $target.querySelector(`[data-component="${mode}"]`);
 
@@ -18,6 +18,7 @@ export default class Posts extends Component {
             case 'list':
                 new PostList($child, { 
                     changeModeHandler: changeModeHandler.bind(this),
+                    changeDateHandler: changeDateHandler.bind(this)
                 });
                 break;
             case 'detail':
