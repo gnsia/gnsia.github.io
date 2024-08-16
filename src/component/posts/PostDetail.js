@@ -12,7 +12,6 @@ export default class PostDetail extends Component {
         if(post) {
             const { date, title, img, description } = post;
             return `
-            <h3>PostDetail</h3>
             <h3 data-post="date">${date}</h3>
             <h3 data-post="title">${title}</h3>
             <h3 data-post="img">${img}</h3>
