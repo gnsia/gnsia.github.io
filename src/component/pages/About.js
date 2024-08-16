@@ -11,7 +11,7 @@ export default class About extends Component {
     }
     mounted() {
         const { $target } = this;
-        const { view } = this.props;
+        const { view } = this.state;
         const $child = $target.querySelector(`[data-component="${view}"]`);
         switch(view) {
             case 'biography':
