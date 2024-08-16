@@ -3,18 +3,16 @@ import Component from "../../core/Component.js";
 export default class Header extends Component {
     template() {
         return `
-            <h1> 
-                Hand-Stencil
-                <span>[</span>
-                <a href="javascript:void(0)" data-view="home">Home</a>
-                <span>/</span>
-                <a href="javascript:void(0)" data-view="posts">Posts</a>
-                <span>/</span>
-                <a href="javascript:void(0)" data-view="playground">Playground</a>
-                <span>]</span>
-                <a href="javascript:void(0)" data-view="about">About</a>
-                <span>/</span>  
-            </h1>
+            <span><h1>Hand-Stencil</h1></span>
+            <span>[</span>
+            <a href="javascript:void(0)" data-view="home">Home</a>
+            <span>/</span>
+            <a href="javascript:void(0)" data-view="posts">Posts</a>
+            <span>/</span>
+            <a href="javascript:void(0)" data-view="playground">Playground</a>
+            <span>/</span>
+            <a href="javascript:void(0)" data-view="about">About</a>
+            <span>]</span>
         `;
     }
     setEvent() {

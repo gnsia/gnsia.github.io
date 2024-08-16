@@ -1,5 +1,6 @@
 import Component from "../../core/Component.js";
 import About from "../pages/About.js";
+import Home from "../pages/Home.js";
 import Playground from "../pages/Playground.js";
 import Posts from "../pages/Posts.js";
 
@@ -10,7 +11,7 @@ export default class Page extends Component {
         switch(view) {
             case 'home':
                 const $home = $target.querySelector(`[data-component="home"]`);
-                new About($home, {});
+                new Home($home, {});
                 break;
             case 'about':
                 const $about = $target.querySelector(`[data-component="about"]`);
