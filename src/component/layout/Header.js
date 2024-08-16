@@ -7,8 +7,8 @@ export default class Header extends Component {
                 Hand-Stencil
             </h1>
             <nav data-component="nav">
-                <a href="#" data-view="playground">Playground</a>
                 <a href="#" data-view="about">About</a>
+                <a href="#" data-view="playground">Playground</a>
             </nav>  
         `;
     }
