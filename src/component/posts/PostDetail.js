@@ -15,6 +15,6 @@ export default class PostDetail extends Component {
         const { date } = this.props;
         const path = `../../../assets/posts/${date}/POST.js`;
         const post = await import(path);
-        return post;
+        return post.default;
     }
 }
