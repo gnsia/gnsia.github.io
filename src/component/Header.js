@@ -12,15 +12,12 @@ export default class Header extends Component {
             </nav>  
         `;
     }
-    mounted() {
-
-    }
     setEvent() {
         const { changeViewHandler } = this.props;
         this.$target.addEventListener('click', e => {
             e.preventDefault();
             if(e.target.tagName === 'A') {
-                const view = e.target.dataset;
+                const { view } = e.target.dataset;
                 changeViewHandler(view);
             }
         })

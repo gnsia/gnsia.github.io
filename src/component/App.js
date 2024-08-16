@@ -33,7 +33,6 @@ export default class App extends Component{
 
     const $footer = this.$target.querySelector('[data-component="footer"]');
     new Footer($footer, {});
-
     switch(view) {
       case 'about':
         const $about = this.$target.querySelector(`[data-component="${view}"]`);
