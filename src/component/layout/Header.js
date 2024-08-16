@@ -5,11 +5,12 @@ export default class Header extends Component {
         return `
             <h1> 
                 Hand-Stencil
-            </h1>
-            <nav data-component="nav">
+                <span>[</span>
                 <a href="#" data-view="about">About</a>
+                <span>/</span>
                 <a href="#" data-view="playground">Playground</a>
-            </nav>  
+                <span>]</span>  
+            </h1>
         `;
     }
     setEvent() {
