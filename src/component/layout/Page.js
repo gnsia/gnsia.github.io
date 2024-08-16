@@ -8,6 +8,10 @@ export default class Page extends Component {
         const { $target } = this;
         const { view } = this.props;
         switch(view) {
+            case 'home':
+                const $home = $target.querySelector(`[data-component="home"]`);
+                new About($home, {});
+                break;
             case 'about':
                 const $about = $target.querySelector(`[data-component="about"]`);
                 new About($about, {});

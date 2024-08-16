@@ -6,21 +6,23 @@ export default class Header extends Component {
             <h1> 
                 Hand-Stencil
                 <span>[</span>
-                <a href="javasciprt:void(0)" data-view="about">About</a>
+                <a href="javascript:void(0)" data-view="home">Home</a>
                 <span>/</span>
                 <a href="javascript:void(0)" data-view="posts">Posts</a>
                 <span>/</span>
                 <a href="javascript:void(0)" data-view="playground">Playground</a>
-                <span>]</span>  
+                <span>]</span>
+                <a href="javascript:void(0)" data-view="about">About</a>
+                <span>/</span>  
             </h1>
         `;
     }
     setEvent() {
+        const { $target } = this;
         const { changeViewHandler } = this.props;
-        this.$target.addEventListener('click', e => {
-            e.preventDefault();
-            if(e.target.tagName === 'A') {
-                const { view } = e.target.dataset;
+        $target.addEventListener('click', ({ target }) => {
+            if(target.tagName === 'A') {
+                const { view } = target.dataset;
                 changeViewHandler(view);
             }
         })
