@@ -1,9 +1,31 @@
 import Component from "../../core/Component.js";
+import Biography from "../abouts/Biography.js";
+import Discography from "../abouts/Discography.js";
+import Introduction from "../abouts/Introduction.js";
 
 export default class About extends Component {
     setup() {
         this.state = {
             view: 'introduction', // 'biography, discography
+        }
+    }
+    mounted() {
+        const { $target } = this;
+        const { view } = this.props;
+        const $child = $target.querySelector(`[data-component="${view}"]`);
+        switch(view) {
+            case 'home':
+                new Biography($child, {});
+                break;
+            case 'about':
+                new Discography($child, {});
+                break;
+            case 'playground':
+                new Introduction($child, {});
+                break;
+            default:
+                alert(`${view} is not available keyword re-load please~!`);
+                break;
         }
     }
     template() {

@@ -8,22 +8,19 @@ export default class Page extends Component {
     mounted() {
         const { $target } = this;
         const { view } = this.props;
+        const $child = $target.querySelector(`[data-component="${view}"]`);
         switch(view) {
             case 'home':
-                const $home = $target.querySelector(`[data-component="home"]`);
-                new Home($home, {});
+                new Home($child, {});
                 break;
             case 'about':
-                const $about = $target.querySelector(`[data-component="about"]`);
-                new About($about, {});
+                new About($child, {});
                 break;
             case 'playground':
-                const $Playground = $target.querySelector(`[data-component="playground"]`);
-                new Playground($Playground, {});
+                new Playground($child, {});
                 break;
             case 'posts':
-                const $posts = $target.querySelector(`[data-component="posts"]`);
-                new Posts($posts, {});
+                new Posts($child, {});
                 break;
             default:
                 alert(`${view} is not available keyword re-load please~!`);
