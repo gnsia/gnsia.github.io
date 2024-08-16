@@ -4,9 +4,10 @@ export default class Playground extends Component {
     template() {
         return `
             <h1>playground</h1>
-            <p>
-                Blog List 입니다.
-            </p>
+            <ol>
+                <li><a href="javascript:void(0)">Interactive Developer's Kinectic Typography</a></li>
+            </ol>
+            
         `;
     }
 }

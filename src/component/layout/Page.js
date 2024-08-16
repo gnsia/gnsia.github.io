@@ -1,7 +1,7 @@
 import Component from "../../core/Component.js";
-import About from "../Pages/About.js";
-import Playground from "../Pages/Playground.js";
-import Posts from "../Pages/Posts.js";
+import About from "../pages/About.js";
+import Playground from "../pages/Playground.js";
+import Posts from "../pages/Posts.js";
 
 export default class Page extends Component {
     mounted() {
