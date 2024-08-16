@@ -6,7 +6,7 @@ import Page from "./layout/Page.js";
 export default class App extends Component{
   setup() {
     this.state = {
-      view: 'about', // about, Playground
+      view: 'home', // posts, playground, about
     }
   }
   
