@@ -8,6 +8,8 @@ export default class Header extends Component {
                 <span>[</span>
                 <a href="#" data-view="about">About</a>
                 <span>/</span>
+                <a href="#" data-view="posts">Playground</a>
+                <span>/</span>
                 <a href="#" data-view="playground">Playground</a>
                 <span>]</span>  
             </h1>
