@@ -42,7 +42,8 @@ export default class About extends Component {
         `;
     }
     setEvent() {
-        const { $target, changeViewHandler } = this;
+        const { $target } = this;
+        const changeViewHandler = this.changeViewHandler.bind(this);
         $target.addEventListener('click', ({ target }) => {
             if(target.tagName === 'A') {
                 const { view } = target.dataset;
