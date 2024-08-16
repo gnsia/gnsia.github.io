@@ -1,8 +1,7 @@
 import Component from "../core/Component.js"
-import About from "./About.js";
-import Playground from "./Playground.js";
-import Header from "./Header.js";
-import Footer from "./Footer.js";
+import Header from "./layout/Header.js";
+import Footer from "./layout/Footer.js";
+import Page from "./layout/Page.js";
 
 export default class App extends Component{
   setup() {
@@ -15,36 +14,29 @@ export default class App extends Component{
     const { view } = this.state;
 
     return `
-      <header data-component="header"></header>       
-      <main data-component="${view}"></main>
+      <header data-component="header"></header>
+      <hr/>
+      <main data-component="page"></main>
+      <hr/>
       <footer data-component="footer"></footer>
-    `
+    `;
   }
 
   mounted() {
     const { view } = this.state;
-    const { changeViewHandler } = this;
+    const { $target, changeViewHandler } = this;
 
-    const $header = this.$target.querySelector('[data-component="header"]');
+    const $header = $target.querySelector('[data-component="header"]');
     new Header($header, { 
       view, 
       changeViewHandler: changeViewHandler.bind(this),
     });
 
-    const $footer = this.$target.querySelector('[data-component="footer"]');
+    const $page = $target.querySelector('[data-component="page"');
+    new Page($page, { view });
+
+    const $footer = $target.querySelector('[data-component="footer"]');
     new Footer($footer, {});
-    switch(view) {
-      case 'about':
-        const $about = this.$target.querySelector(`[data-component="${view}"]`);
-        new About($about, {});
-        break;
-      case 'playground':
-        const $Playground = this.$target.querySelector(`[data-component="${view}"]`);
-        new Playground($Playground, {});
-        break;
-      default:
-        break;
-    }
   }
   changeViewHandler(view) {
     this.setState({ view });
