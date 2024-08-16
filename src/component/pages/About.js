@@ -12,11 +12,11 @@ export default class About extends Component {
             <h2>
                 About
                 <span>[</span>
-                <a href="javasciprt:void(0)" data-view="introduction">About</a>
+                <a href="javasciprt:void(0)" data-view="introduction">Introduction</a>
                 <span>/</span>
-                <a href="javasciprt:void(0)" data-view="biography">About</a>
+                <a href="javasciprt:void(0)" data-view="biography">Biography</a>
                 <span>/</span>
-                <a href="javasciprt:void(0)" data-view="discography">About</a>
+                <a href="javasciprt:void(0)" data-view="discography">Discography</a>
                 <span>]</span>
             </h2>
             <div data-component="${view}"></div>
