@@ -8,7 +8,7 @@ export default class PostDetail extends Component {
     mounted() {
         const { $target } = this;
         const { date, title, img, description } = this.state.post;
-        
+
         const $date = $target.querySelector('[data-post="date"]');
         const $title = $target.querySelector('[data-post="title"]');
         const $img = $target.querySelector('[data-post="img"]');
@@ -22,10 +22,10 @@ export default class PostDetail extends Component {
     template() {
         return `
             <h3>PostDetail</h3>
-            <h3 data-post="date">${post.default.date}</h3>
-            <h3 data-post="title">${post.default.title}</h3>
-            <h3 data-post="img">${post.default.img}</h3>
-            <h3 data-post="description">${post.default.description}</h3>
+            <h3 data-post="date"></h3>
+            <h3 data-post="title"></h3>
+            <h3 data-post="img"></h3>
+            <h3 data-post="description"></h3>
         `;
     }
     async getPost() {
