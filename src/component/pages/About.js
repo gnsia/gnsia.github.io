@@ -32,14 +32,12 @@ export default class About extends Component {
         const { view } = this.state;
         const abouts = ['introduction', 'biography', 'discography'];
         return `
-            <h2>
-                About
-                <span>[</span>
-                ${abouts.map(about => `
-                    <a href="javascript:void(0)" data-view="${about}">${about}</a>
-                `).join(`<span>/</span>`)}
-                <span>]</span>
-            </h2>
+            <h2>About</h2>
+            <span>[</span>
+            ${abouts.map(about => `
+                <a href="javascript:void(0)" data-view="${about}">${about}</a>
+            `).join(`<span>/</span>`)}
+            <span>]</span>
             <div data-component="${view}"></div>
         `;
     }

@@ -4,7 +4,7 @@ export default class Header extends Component {
     template() {
         const pages = ['home', 'posts', 'playground', 'about'];
         return `
-            <span><h1>Hand-Stencil</h1></span>
+            <h1>Hand-Stencil</h1>
             <span>[</span>
             ${pages.map(page => `
                 <a href="javascript:void(0)" data-view="${page}">${page}</a>
