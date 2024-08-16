@@ -1,5 +1,5 @@
 import Component from "../../core/Component.js";
-import { POST_LIST } from "../../../assets/posts/POST_LIST.js";
+import POST_LIST from "../../../assets/posts/POST_LIST.js";
 
 export default class PostList extends Component {
     template() {
