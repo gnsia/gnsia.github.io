@@ -4,7 +4,6 @@ export default class PostDetail extends Component {
     setup() {
         this.state = { 
             post: null,
-            loadingInterval: null,
         };
         this.getPost();
     }
