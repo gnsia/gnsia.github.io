@@ -35,6 +35,7 @@ export default class Posts extends Component {
     template() {
         const { mode } = this.state;
         return `
+            <h2>Posts</h2>
             <div data-component="${mode}"></div>
         `;
     }
