@@ -19,26 +19,13 @@ export default class PostDetail extends Component {
             <h3 data-post="description">${description}</h3>
         `;
         } else {
-            return `<h3>${this.showLoading()}</h3>`
+            return `<h3>post is coming...</h3>`
         }
-    }
-    showLoading(idx) {
-        this.state.loadingInterval = setInterval(() => {
-            const text = 'please wait!';
-            const random = this.getRandom(0, 10);
-            const char = text[random];
-            text.replace(char, char.toLocaleUpperCase());
-            return text;
-        }, 100);
-    }
-    getRandom(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
     }
     async getPost() {
         const { date } = this.props;
         const path = `../../../assets/posts/${date}/POST.js`;
         const post = await import(path);
-        clearInterval(this.state.loadingInterval);
         this.changePostHandler(post.default);
     }
     changePostHandler(post) {
