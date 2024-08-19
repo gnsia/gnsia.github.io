@@ -8,11 +8,8 @@ export default class App extends Component{
     this.state = {
       view: 'home', // posts, playground, about
     }
-  }
-  
+  }  
   template() {
-    const { view } = this.state;
-
     return `
       <header data-component="header"></header>
       <hr/>
@@ -21,7 +18,6 @@ export default class App extends Component{
       <footer data-component="footer"></footer>
     `;
   }
-
   mounted() {
     const { view } = this.state;
     const { $target, changeViewHandler } = this;

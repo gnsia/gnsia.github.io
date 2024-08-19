@@ -12,14 +12,25 @@ export default class PostDetail extends Component {
         if(post) {
             const { date, title, img, description } = post;
             return `
-            <h3 data-post="date">${date}</h3>
-            <h3 data-post="title">${title}</h3>
-            <h3 data-post="img">${img}</h3>
-            <h3 data-post="description">${description}</h3>
+            <h3>
+                <a href="javascript:void(0)">[${date}] ${title}</a>
+            </h3>
+            <img src="${img}" alt="${title}" width="300px"/>
+            <p>${description}</p>
+            <a href="javascript:void(0)">back to list</a>
         `;
         } else {
             return `<h3>post is coming...</h3>`
         }
+    }
+    setEvent() {
+        const { $target } = this;
+        const { changeModeHandler } = this.props;
+        $target.addEventListner('click', ({ target }) => {
+            if(target.tagName === 'A') {
+                changeModeHandler('list');
+            }
+        });
     }
     async getPost() {
         const { date } = this.props;
