@@ -26,7 +26,7 @@ export default class PostDetail extends Component {
     setEvent() {
         const { $target } = this;
         const { changeModeHandler } = this.props;
-        $target.addEventListner('click', ({ target }) => {
+        $target.addEventListener('click', ({ target }) => {
             if(target.tagName === 'A') {
                 alert('clicked');
                 changeModeHandler('list');
