@@ -5,7 +5,6 @@ export default class PostDetail extends Component {
         this.state = { 
             post: null,
         };
-        this.getPost();
     }
     template() {
         const { post } = this.state;
@@ -32,6 +31,7 @@ export default class PostDetail extends Component {
                 changeModeHandler('list');
             }
         });
+        this.getPost();
     }
     async getPost() {
         const { date } = this.props;
