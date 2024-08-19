@@ -8,7 +8,7 @@ export default class PostList extends Component {
             ${POST_LIST.map(post => `
                 <li>
                     <a href="javascript:void(0)" data-date="${post.date}">
-                        [${post.date}]-${post.title}
+                        [${post.date}] ${post.title}
                     </a>
                 </li>
             `)}
