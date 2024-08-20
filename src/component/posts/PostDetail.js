@@ -24,10 +24,10 @@ export default class PostDetail extends Component {
     }
     setEvent() {
         const { $target } = this;
-        const { changeModeHandler } = this.props;
+        const { changeDateAndModeHandler } = this.props;
         $target.addEventListener('click', ({ target }) => {
             if(target.tagName === 'A') {
-                changeModeHandler('list');
+                changeDateAndModeHandler('', 'list');
             }
         });
         this.getPost();

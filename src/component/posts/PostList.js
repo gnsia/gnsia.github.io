@@ -17,12 +17,11 @@ export default class PostList extends Component {
     }
     setEvent() {
         const { $target } = this;
-        const { changeModeHandler, changeDateHandler } = this.props;
+        const { changeDateAndModeHandler } = this.props;
         $target.addEventListener('click', ({ target }) => {
             if(target.tagName === 'A') {
                 const { date } = target.dataset;
-                changeDateHandler(date);
-                changeModeHandler('detail');
+                changeDateAndModeHandler(date, 'detail');
             }
         });
     }

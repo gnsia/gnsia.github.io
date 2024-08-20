@@ -7,6 +7,7 @@ export default class About extends Component {
     setup() {
         this.state = {
             view: 'introduction', // 'biography, discography
+            contents: ['introduction', 'biography', 'discography'],
         }
     }
     mounted() {
@@ -29,13 +30,12 @@ export default class About extends Component {
         }
     }
     template() {
-        const { view } = this.state;
-        const abouts = ['introduction', 'biography', 'discography'];
+        const { view, contents } = this.state;
         return `
             <h2>About</h2>
             <span>[</span>
-            ${abouts.map(about => `
-                <a href="javascript:void(0)" data-view="${about}">${about}</a>
+            ${contents.map(content => `
+                <a href="javascript:void(0)" data-view="${content}">${content}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
             <div data-component="${view}"></div>

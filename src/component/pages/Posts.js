@@ -10,21 +10,20 @@ export default class Posts extends Component {
         }
     }
     mounted() {
-        const { $target, changeModeHandler, changeDateHandler } = this;
+        const { $target, changeDateAndModeHandler } = this;
         const { mode, date } = this.state;
         const $child = $target.querySelector(`[data-component="${mode}"]`);
 
         switch(mode) {
             case 'list':
                 new PostList($child, { 
-                    changeModeHandler: changeModeHandler.bind(this),
-                    changeDateHandler: changeDateHandler.bind(this)
+                    changeDateAndModeHandler: changeDateAndModeHandler.bind(this),
                 });
                 break;
             case 'detail':
                 new PostDetail($child, {
                     date,
-                    changeModeHandler: changeModeHandler.bind(this),
+                    changeDateAndModeHandler: changeDateAndModeHandler.bind(this),
                 });
                 break;
             default:
@@ -39,10 +38,7 @@ export default class Posts extends Component {
             <div data-component="${mode}"></div>
         `;
     }
-    changeModeHandler(mode) {
-        this.setState({ mode });
-    }
-    changeDateHandler(date) {
-        this.setState({ date });
+    changeDateAndModeHandler(date, mode) {
+        this.setState({ date, mode });
     }
 }
