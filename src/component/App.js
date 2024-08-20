@@ -36,7 +36,7 @@ export default class App extends Component{
       `;
     } else {
       return `
-        <h1 id="loading"></h1>
+        <div id="loading"></div>
       `
     }
   }
@@ -66,9 +66,9 @@ export default class App extends Component{
       const { $target } = this;
       const $loading = $target.querySelector('#loading');
       const idx = count % 7;
-      let message = ['l', 'o', 'a', 'd', 'i', 'n', 'g'];
-      message[idx] = message[idx].toLocaleUpperCase();
-      $loading.innerHTML = message.join('');
+      let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
+      message[idx] = message[idx].toLocaleLowerCase();
+      $loading.innerHTML = message.map(v => `<h1>${v}</h1>`).join('');
       setTimeout(() => {
         this.loading(++count);
       }, 100);
