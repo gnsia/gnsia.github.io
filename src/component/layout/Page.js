@@ -18,10 +18,10 @@ export default class Page extends Component {
             posts: "../pages/Posts.js",
         }
         const child = await import(paths[view]);
-        this.changeChildHandler(child.default);
+        this.changeChildHandler(child.default, true);
     }
-    changeChildHandler(Child) {
-        this.setState({ Child });
+    changeChildHandler(Child, isImported) {
+        this.setState({ Child, isImported });
     }
     mounted() {
         const { Child, isImported } = this.state;
