@@ -71,7 +71,7 @@ export default class App extends Component{
       const component = await import(c.path);
       return { ...c, component };
     });
-    this.changeChildrenHandler(children, isImported);
+    this.changeChildrenHandler(children, true);
   }
   changeChildrenHandler(children, isImported) {
     this.setState({ children, isImported });
