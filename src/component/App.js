@@ -36,15 +36,7 @@ export default class App extends Component{
       `;
     } else {
       return `
-        <div id="loading">
-          <h1>L</h1>
-          <h1>O</h1>
-          <h1>A</h1>
-          <h1>D</h1>
-          <h1>I</h1>
-          <h1>N</h1>
-          <h1>G</h1>
-        </div>
+        <h1 id="loading"></h1>
       `
     }
   }
@@ -65,7 +57,7 @@ export default class App extends Component{
       const $footer = $target.querySelector(`[data-component="footer"]`);
       new Footer($footer, {});
     } else {
-      this.loading(1);
+      this.loading(0);
     }
   }
   loading(count) {
@@ -73,13 +65,13 @@ export default class App extends Component{
     if(!isImported) {
       const { $target } = this;
       const $loading = $target.querySelector('#loading');
-      const $h1Array = $loading.querySelectorAll('h1');
-      $h1Array.forEach(h1 => {
-        h1.innerHTML += h1.innerHTML + '.'.repeat(count);
-      });
+      const idx = count % 7;
+      let message = ['l', 'o', 'a', 'd', 'i', 'n', 'g'];
+      message[idx] = message[idx].toLocaleUpperCase();
+      $loading.innerHTML = message.join('');
       setTimeout(() => {
         this.loading(++count);
-      }, 500);
+      }, 100);
     }
   }
   changeViewHandler(view) {
