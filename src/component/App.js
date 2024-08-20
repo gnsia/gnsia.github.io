@@ -1,7 +1,4 @@
 import Component from "../core/Component.js"
-import Header from "./layout/Header.js";
-import Footer from "./layout/Footer.js";
-import Page from "./layout/Page.js";
 
 export default class App extends Component{
   setup() {
@@ -45,21 +42,24 @@ export default class App extends Component{
     }
   }
   mounted() {
-    const { view, isImported } = this.state;
+    const { view, isImported, children } = this.state;
     const { $target, changeViewHandler } = this;
 
     if(isImported) {
-      const $header = $target.querySelector('[data-component="header"]');
-      new Header($header, { 
+      const header = children.find(c => c.view === 'header');
+      const $header = $target.querySelector(`[data-component="${header.view}"]`);
+      new header.component($header, { 
         view, 
         changeViewHandler: changeViewHandler.bind(this),
       });
+
+      const page = children.find(v => v.view === 'page');
+      const $page = $target.querySelector(`[data-component="${page.view}"]`);
+      new page.component($page, { view });
   
-      const $page = $target.querySelector('[data-component="page"');
-      new Page($page, { view });
-  
-      const $footer = $target.querySelector('[data-component="footer"]');
-      new Footer($footer, {});
+      const footer = children.find(v => v.view === 'footer');
+      const $footer = $target.querySelector(`[data-component="${footer.view}"]`);
+      new footer.component($footer, {});
     }
   }
   changeViewHandler(view) {
