@@ -67,7 +67,7 @@ export default class App extends Component{
     $loading.innerHTML = 'Loading' + '.'.repeat(count);
     if(!isImported) {
       setTimeout(() => {
-        this.loading(count++);
+        this.loading(++count);
       }, 100);
     }
   }
