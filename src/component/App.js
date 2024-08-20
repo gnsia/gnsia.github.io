@@ -36,7 +36,7 @@ export default class App extends Component{
       `;
     } else {
       return `
-        <div id="loading"></div>
+        <h1 id="loading"></h1>
       `
     }
   }
@@ -61,11 +61,11 @@ export default class App extends Component{
     }
   }
   loading(count) {
-    const { $target } = this;
     const { isImported } = this.state;
-    const $loading = $target.querySelector('#loading');
-    $loading.innerHTML = 'Loading' + '.'.repeat(count);
     if(!isImported) {
+      const { $target } = this;
+      const $loading = $target.querySelector('#loading');
+      $loading.innerHTML = 'Loading' + '.'.repeat(count);
       setTimeout(() => {
         this.loading(++count);
       }, 100);
