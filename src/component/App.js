@@ -75,11 +75,11 @@ export default class App extends Component{
       const $loading = $target.querySelector('#loading');
       const $h1Array = $loading.querySelectorAll('h1');
       $h1Array.forEach(h1 => {
-        h1.innerHTML += h1.innerHTML.repeat(count);
+        h1.innerHTML += h1.innerHTML + '.'.repeat(count);
       });
       setTimeout(() => {
         this.loading(++count);
-      }, 100);
+      }, 500);
     }
   }
   changeViewHandler(view) {
