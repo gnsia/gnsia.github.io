@@ -51,10 +51,14 @@ export default class App extends Component{
     this.setState({ view });
   }
   async importChildren() {
-    const { children } = this.state;
-    children.Header = await import("./layout/Header.js");
-    children.Page = await import("./layout/Page.js");
-    children.Footer = await import("./layout/Footer.js");
+    const header = await import("./layout/Header.js");
+    const page = await import("./layout/Page.js");
+    const footer = await import("./layout/Footer.js");
+    const children = {
+      Header: header.default,
+      Page: page.default,
+      Footer: footer.default,
+    }
     this.changeChildrenHandler(children, true);
   }
   changeChildrenHandler(children, isImported) {
