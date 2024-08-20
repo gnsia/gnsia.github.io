@@ -6,36 +6,41 @@ import Introduction from "../abouts/Introduction.js";
 export default class About extends Component {
     setup() {
         this.state = {
-            view: 'introduction', // 'biography, discography
-            contents: ['introduction', 'biography', 'discography'],
+            view: 'introduction',
         }
+        this.children = [
+            {
+                view: 'introduction',
+                title: 'Introduction',
+                component: Introduction,
+            },
+            {
+                view: 'biography',
+                title: 'Biography',
+                component: Biography,
+            },
+            {
+                view: 'discography',
+                title: 'Discography',
+                component: Discography,
+            },
+        ]
     }
     mounted() {
-        const { $target } = this;
         const { view } = this.state;
-        const $child = $target.querySelector(`[data-component="${view}"]`);
-        switch(view) {
-            case 'biography':
-                new Biography($child, {});
-                break;
-            case 'discography':
-                new Discography($child, {});
-                break;
-            case 'introduction':
-                new Introduction($child, {});
-                break;
-            default:
-                alert(`${view} is not available keyword re-load please~!`);
-                break;
-        }
+        const { $target, children } = this;
+        const $childTarget = $target.querySelector(`[data-component="${view}"]`);
+        const child = children.find(c => c.view === view);
+        new child.component($childTarget, {});
     }
     template() {
-        const { view, contents } = this.state;
+        const { view } = this.state;
+        const { children } = this;
         return `
             <h2>About</h2>
             <span>[</span>
-            ${contents.map(content => `
-                <a href="javascript:void(0)" data-view="${content}">${content}</a>
+            ${children.map(c => `
+                <a href="javascript:void(0)" data-view="${c.view}">${c.title}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
             <div data-component="${view}"></div>

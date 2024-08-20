@@ -37,7 +37,7 @@ export default class Playground extends Component {
                 <li>
                     <a href="javascript:void(0)" data-view="${c.view}">${c.title}</a>
                     <span> by ${c.author}</span> <br/>
-                    <span>[<a href="${c.source}">출처</a>]</span>
+                    <span>[<a href="${c.source}" target="_blank">출처</a>]</span>
                 </li>
             `).join('')}
             </ol>
