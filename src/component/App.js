@@ -5,23 +5,11 @@ export default class App extends Component{
     this.state = {
       view: 'home', // posts, playground, about
       isImported: false,
-      children: [
-        {
-          view: 'header',
-          path: "./layout/Header.js",
-          component: null
-        },
-        {
-          view: 'page',
-          path: "./layout/Page.js",
-          component: null
-        },
-        {
-          view: 'footer',
-          path: "./layout/Footer.js",
-          component: null
-        },
-      ]
+      children: {
+        Header: null,
+        Page: null,
+        Footer: null,
+      },
     }
     this.importChildren();
   }  
@@ -44,22 +32,19 @@ export default class App extends Component{
   mounted() {
     const { view, isImported, children } = this.state;
     const { $target, changeViewHandler } = this;
-
+    const { Header, Page, Footer } = children;
     if(isImported) {
-      const header = children.find(c => c.view === 'header');
-      const $header = $target.querySelector(`[data-component="${header.view}"]`);
-      new header.component($header, { 
+      const $header = $target.querySelector(`[data-component="header"]`);
+      new Header($header, { 
         view, 
         changeViewHandler: changeViewHandler.bind(this),
       });
 
-      const page = children.find(v => v.view === 'page');
-      const $page = $target.querySelector(`[data-component="${page.view}"]`);
-      new page.component($page, { view });
+      const $page = $target.querySelector(`[data-component="page"]`);
+      new Page($page, { view });
   
-      const footer = children.find(v => v.view === 'footer');
-      const $footer = $target.querySelector(`[data-component="${footer.view}"]`);
-      new footer.component($footer, {});
+      const $footer = $target.querySelector(`[data-component="footer"]`);
+      new Footer($footer, {});
     }
   }
   changeViewHandler(view) {
@@ -67,10 +52,9 @@ export default class App extends Component{
   }
   async importChildren() {
     const { children } = this.state;
-    children.map( async c => {
-      const component = await import(c.path);
-      return { ...c, component };
-    });
+    children.Header = await import("./layout/Header.js");
+    children.Page = await import("./layout/Page.js");
+    children.Footer = await import("./layout/Footer.js");
     this.changeChildrenHandler(children, true);
   }
   changeChildrenHandler(children, isImported) {
