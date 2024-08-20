@@ -36,7 +36,7 @@ export default class App extends Component{
       `;
     } else {
       return `
-        <h1>Loading...</h1>
+        <div id="loading"></div>
       `
     }
   }
@@ -56,12 +56,24 @@ export default class App extends Component{
   
       const $footer = $target.querySelector(`[data-component="footer"]`);
       new Footer($footer, {});
+    } else {
+      this.loading(1);
+    }
+  }
+  loading(count) {
+    const { $target } = this;
+    const { isImported } = this.state;
+    const $loading = $target.querySelector('#loading');
+    $loading.innerHTML = 'Loading' + '.'.repeat(count);
+    if(!isImported) {
+      setTimeout(() => {
+        this.loading(count++);
+      }, 100);
     }
   }
   changeViewHandler(view) {
     this.setState({ view });
   }
-  
   changeChildrenHandler(children, isImported) {
     this.setState({ children, isImported });
   }
