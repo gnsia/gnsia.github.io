@@ -36,7 +36,15 @@ export default class App extends Component{
       `;
     } else {
       return `
-        <h1 id="loading"></h1>
+        <div id="loading">
+          <h1>L</h1>
+          <h1>O</h1>
+          <h1>A</h1>
+          <h1>D</h1>
+          <h1>I</h1>
+          <h1>N</h1>
+          <h1>G</h1>
+        </div>
       `
     }
   }
@@ -65,7 +73,10 @@ export default class App extends Component{
     if(!isImported) {
       const { $target } = this;
       const $loading = $target.querySelector('#loading');
-      $loading.innerHTML = 'Loading' + '.'.repeat(count);
+      const $h1Array = $loading.querySelectorAll('h1');
+      $h1Array.forEach(h1 => {
+        h1.innerHTML += h1.innerHTML.repeat(count);
+      });
       setTimeout(() => {
         this.loading(++count);
       }, 100);
