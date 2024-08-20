@@ -1,36 +1,48 @@
 import Component from "../../core/Component.js";
-// import About from "../pages/About.js";
-// import Home from "../pages/Home.js";
-// import Playground from "../pages/Playground.js";
-// import Posts from "../pages/Posts.js";
+
 
 export default class Page extends Component {
-    mounted() {
-        const { $target } = this;
+    setup() {
+        this.state = {
+            isImported: false,
+            Child: null,
+        }
+        this.importChild();
+    }
+    async importChild() {
         const { view } = this.props;
-        const $child = $target.querySelector(`[data-component="${view}"]`);
-        // switch(view) {
-        //     case 'home':
-        //         new Home($child, {});
-        //         break;
-        //     case 'about':
-        //         new About($child, {});
-        //         break;
-        //     case 'playground':
-        //         new Playground($child, {});
-        //         break;
-        //     case 'posts':
-        //         new Posts($child, {});
-        //         break;
-        //     default:
-        //         alert(`${view} is not available keyword re-load please~!`);
-        //         break;
-        // }
+        const paths = {
+            about: "../pages/About.js",
+            home: "../pages/Home.js",
+            playground: "../pages/Playground.js",
+            posts: "../pages/Posts.js",
+        }
+        const child = await import(paths[view]);
+        this.changeChildHandler(child.default);
+    }
+    changeChildHandler(Child) {
+        this.setState({ Child });
+    }
+    mounted() {
+        const { Child, isImported } = this.state;
+        if(isImported) {
+            const { view } = this.props;
+            const { $target } = this;
+            const $child = $target.querySelector(`[data-component="${view}"]`);
+            new Child($child, {});
+        }
     }
     template() {
-        const { view } = this.props;
-        return `
-            <div data-component="${view}"></div>
-        `;
+        const { isImported } = this.state;
+        if(isImported) {
+            const { view } = this.props;
+            return `
+                <div data-component="${view}"></div>
+            `;
+        } else {
+            return `
+                <h2>Loading...</h2>
+            `;
+        }
     }
 }
