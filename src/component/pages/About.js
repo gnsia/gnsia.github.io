@@ -1,49 +1,66 @@
 import Component from "../../core/Component.js";
-import Biography from "../abouts/Biography.js";
-import Discography from "../abouts/Discography.js";
-import Introduction from "../abouts/Introduction.js";
 
 export default class About extends Component {
     setup() {
         this.state = {
             view: 'introduction',
+            Child: null,
+            isImported: false,
         }
-        this.children = [
-            {
-                view: 'introduction',
-                title: 'Introduction',
-                component: Introduction,
-            },
-            {
-                view: 'biography',
-                title: 'Biography',
-                component: Biography,
-            },
-            {
-                view: 'discography',
-                title: 'Discography',
-                component: Discography,
-            },
-        ]
+        this.importChild();
+    }
+    async importChild() {
+        const { view } = this.state;
+        const paths = {
+            biography: "../abouts/Biography.js",
+            discography: "../abouts/Discography.js",
+            introduction: "../abouts/Introduction.js",
+        }
+        const child = await import(paths[view]);
+        this.changeChildHandler(child.default, true);
+    }
+    changeChildHandler(Child, isImported) {
+        this.setState({ Child, isImported });
     }
     mounted() {
-        const { view } = this.state;
-        const { $target, children } = this;
-        const $childTarget = $target.querySelector(`[data-component="${view}"]`);
-        const child = children.find(c => c.view === view);
-        new child.component($childTarget, {});
+        const { view, Child, isImported } = this.state;
+        if(isImported) {
+            const { $target } = this;
+            const $child = $target.querySelector(`[data-component="${view}"]`);
+            new Child($child, {});
+        } else {
+            this.loading(0);
+        }
+    }
+    loading(count) {
+        const { isImported } = this.state;
+        if(!isImported) {
+          const { $target } = this;
+          const $loading = $target.querySelector('#loading');
+          const idx = count % 7;
+          let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
+          message[idx] = message[idx].toLocaleLowerCase();
+          $loading.innerHTML = message.map(v => `<h3>${v}</h3>`).join('');
+          setTimeout(() => {
+            this.loading(++count);
+          }, 100);
+        }
     }
     template() {
-        const { view } = this.state;
-        const { children } = this;
+        const { view, isImported } = this.state;
+        const children = ['introduction', 'biography', 'discography'];
         return `
             <h2>About</h2>
             <span>[</span>
             ${children.map(c => `
-                <a href="javascript:void(0)" data-view="${c.view}">${c.title}</a>
+                <a href="javascript:void(0)" data-view="${c}">${c}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
-            <div data-component="${view}"></div>
+            ${isImported ? `
+                <div data-component="${view}"></div>    
+            ` : `
+                <div id="loading"></div>    
+            `}
         `;
     }
     setEvent() {
