@@ -5,40 +5,41 @@ import PostList from "../posts/PostList.js";
 export default class Posts extends Component {
     setup() {
         this.state = {
-            mode: 'list', // list, detail
+            id:0,
             date: '',
+            view: 'list', // list, detail
         }
     }
     mounted() {
-        const { $target, changeDateAndModeHandler } = this;
-        const { mode, date } = this.state;
-        const $child = $target.querySelector(`[data-component="${mode}"]`);
+        const { $target, changePostInfoHandler } = this;
+        const { id, date, view } = this.state;
+        const $child = $target.querySelector(`[data-component="${view}"]`);
 
-        switch(mode) {
+        switch(view) {
             case 'list':
                 new PostList($child, { 
-                    changeDateAndModeHandler: changeDateAndModeHandler.bind(this),
+                    changePostInfoHandler: changePostInfoHandler.bind(this),
                 });
                 break;
             case 'detail':
                 new PostDetail($child, {
-                    date,
-                    changeDateAndModeHandler: changeDateAndModeHandler.bind(this),
+                    id, date, view,
+                    changePostInfoHandler: changePostInfoHandler.bind(this),
                 });
                 break;
             default:
-                alert(`${mode} is not available keyword reload please!`);
+                alert(`${view} is not available keyword reload please!`);
                 break;
         }
     }
     template() {
-        const { mode } = this.state;
+        const { view } = this.state;
         return `
             <h2>Posts</h2>
-            <div data-component="${mode}"></div>
+            <div data-component="${view}"></div>
         `;
     }
-    changeDateAndModeHandler(date, mode) {
-        this.setState({ date, mode });
+    changePostInfoHandler(id, date, view) {
+        this.setState({ id, date, view });
     }
 }
