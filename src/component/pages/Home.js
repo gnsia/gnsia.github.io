@@ -13,10 +13,10 @@ export default class Home extends Component {
         const { $target } = this;
         const $welcome = $target.querySelector('#welcome');
         $welcome.innerHTML = `<h${num}>Welcome To My Homepage!</h${num}>`
-        if(num > 0) {
+        if(num > 1) {
             setTimeout(() => {
                 this.welcome(--num);
-            }, 1000)
+            }, 500)
         }
     }
 }
