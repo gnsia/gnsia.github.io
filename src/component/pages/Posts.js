@@ -5,7 +5,7 @@ import PostList from "../posts/PostList.js";
 export default class Posts extends Component {
     setup() {
         this.state = {
-            id:0,
+            id: 0,
             date: '',
             view: 'list', // list, detail
         }
@@ -40,6 +40,7 @@ export default class Posts extends Component {
         `;
     }
     changePostInfoHandler(id, date, view) {
+        const id = parseInt(id);
         this.setState({ id, date, view });
     }
 }
