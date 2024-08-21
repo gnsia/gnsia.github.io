@@ -20,8 +20,7 @@ export default class PostDetail extends Component {
                 <a href="javascript:void(0)" data-view="list">list</a> /
                 ${next}
                 ]
-            </span>
-            
+            </span>           
         `;
         } else {
             return `<h3>post is coming...</h3>`
@@ -36,7 +35,7 @@ export default class PostDetail extends Component {
                         data-date="${post.date}"
                         data-view="detail">next</a>`;
         } else {
-            return `<p>next</p>`;
+            return `<span>next</span>`;
         }
     }
     get prev() {
@@ -48,18 +47,18 @@ export default class PostDetail extends Component {
                         data-date="${post.date}"
                         data-view="detail">prev</a>`;
         } else {
-            return `<p>prev</p>`;
+            return `<span>prev</span>`;
         }
     }
     setEvent() {
         const { $target } = this;
-        const { changeDateAndModeHandler } = this.props;
+        const { changePostInfoHandler } = this.props;
         $target.addEventListener('click', ({ target }) => {
-            const { view } = target.dataset;
+            const { id, date, view } = target.dataset;
             if(view === 'list') {
-                changeDateAndModeHandler('', view);
+                changePostInfoHandler(0, '', view);
             } else {
-
+                changePostInfoHandler(id, date, view);
             }
         });
         this.getPost();
