@@ -39,8 +39,8 @@ export default class Posts extends Component {
             <div data-component="${view}"></div>
         `;
     }
-    changePostInfoHandler(id, date, view) {
-        const id = parseInt(id);
+    changePostInfoHandler(stringId, date, view) {
+        const id = parseInt(stringId);
         this.setState({ id, date, view });
     }
 }
