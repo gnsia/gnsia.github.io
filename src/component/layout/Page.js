@@ -30,6 +30,22 @@ export default class Page extends Component {
             const { $target } = this;
             const $child = $target.querySelector(`[data-component="${view}"]`);
             new Child($child, {});
+        } else {
+            this.loading(0);
+        }
+    }
+    loading(count) {
+        const { isImported } = this.state;
+        if(!isImported) {
+          const { $target } = this;
+          const $loading = $target.querySelector('#loading');
+          const idx = count % 7;
+          let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
+          message[idx] = message[idx].toLocaleLowerCase();
+          $loading.innerHTML = message.map(v => `<h3>${v}</h3>`).join('');
+          setTimeout(() => {
+            this.loading(++count);
+          }, 100);
         }
     }
     template() {
@@ -41,7 +57,7 @@ export default class Page extends Component {
             `;
         } else {
             return `
-                <h2>Loading...</h2>
+                <div id="loading"></div>
             `;
         }
     }
