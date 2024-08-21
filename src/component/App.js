@@ -23,6 +23,9 @@ export default class App extends Component{
       Footer: footer.default,
     }
     this.changeChildrenHandler(children, true);
+  }
+  changeChildrenHandler(children, isImported) {
+    this.setState({ children, isImported });
   }  
   template() {
     const { isImported } = this.state;
@@ -76,8 +79,5 @@ export default class App extends Component{
   }
   changeViewHandler(view) {
     this.setState({ view });
-  }
-  changeChildrenHandler(children, isImported) {
-    this.setState({ children, isImported });
   }
 }
