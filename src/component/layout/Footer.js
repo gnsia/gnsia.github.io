@@ -3,7 +3,7 @@ import Component from "../../core/Component.js";
 export default class Footer extends Component {
     template() {
         return `
-            <h1>This is Footer!</h1>
+            <h6>COPYRIGHT © 2024 ALL RIGHT 개발자 김동훈</6>
         `;
     }
 }
