@@ -25,7 +25,7 @@ export default class Component {
         const $loading = this.$target.querySelector('[data-util="loading"]');
         if($loading) {
             const { isImported } = this.state;
-            Loading.render($loading, isImported);
+            Loading.standby($loading, isImported);
         }
     }
     setState(newState) {
