@@ -72,7 +72,7 @@ export default class App extends Component{
       const $loading = $target.querySelector('#loading');
       let message = [...'HAND-STENCIL'];
       const idx = count % message.length;
-      message[idx] = message[idx].toUpperCase();
+      message[idx] = message[idx].toLowerCase();
       $loading.innerHTML = `<h1>${message.join('')}</h1>`;
       setTimeout(() => {
         this.loading(++count);
