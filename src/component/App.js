@@ -10,6 +10,7 @@ export default class App extends Component {
       `;
   }
   mounted() {
+    const { $target } = this;
     new Outer($target.querySelector('[data-component="outer"]'), { });
     new Wrapper($target.querySelector('[data-component="wrapper"]'), { });
   }
