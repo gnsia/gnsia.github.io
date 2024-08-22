@@ -49,7 +49,7 @@ export default class App extends Component{
     const { $target, changeViewHandler } = this;
     const { Header, Page, Footer } = children;
     
-    this.loading(0);
+    this.loading(10);
 
     if(isImported) {
       const $header = $target.querySelector(`[data-component="header"]`);
@@ -73,7 +73,7 @@ export default class App extends Component{
       const $laoding = $target.querySelector('[data-util="loading"]');
       setTimeout(() => {
         $laoding.innerHTML = `<hr width="${px}px"/>`;
-        this.loading(++px);
+        this.loading(px+10);
       }, 100);
     }
   }
