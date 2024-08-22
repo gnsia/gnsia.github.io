@@ -67,8 +67,9 @@ export default class App extends Component{
 
   }
   loading(px) {
+    const { $target } = this;
+    const { isImported } = this.state;
     if(!isImported) {
-      const { $target } = this;
       const $laoding = $target.querySelector('[data-util="loading"]');
       setTimeout(() => {
         $laoding.innerHTML = `<hr width="${px}px"/>`;
