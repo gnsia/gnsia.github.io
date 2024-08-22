@@ -1,12 +1,3 @@
-const $root = document.querySelector('#root');
+import App from "./component/App.js";
 
-const importApp = async () => {
-    const app = await import("./component/App.js");
-    new app.default($root);
-}
-
-$root.innerHTML = `
-    <h1>Hand-Stencil</h1>
-`;
-
-importApp();
+new App(document.querySelector('#root'));
