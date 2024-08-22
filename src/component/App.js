@@ -72,7 +72,7 @@ export default class App extends Component{
       const $loading = $target.querySelector('#loading');
       const idx = count % 7;
       let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
-      message[idx] = message[idx].toLocaleLowerCase();
+      message[idx] = message[idx].toLowerCase();
       $loading.innerHTML = message.map(v => `<h3>${v}</h3>`).join('');
       setTimeout(() => {
         this.loading(++count);
