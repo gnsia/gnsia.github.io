@@ -71,9 +71,9 @@ export default class App extends Component{
       const { $target } = this;
       const $loading = $target.querySelector('#loading');
       const idx = count % 7;
-      let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
-      message[idx] = message[idx].toLowerCase();
-      $loading.innerHTML = message.map(v => `<h3>${v}</h3>`).join('');
+      let message = [...'Hand-Stencil'];
+      message[idx] = message[idx].toUpperCase();
+      $loading.innerHTML = `<h3>${message.join('')}</h3>`;
       setTimeout(() => {
         this.loading(++count);
       }, 100);
