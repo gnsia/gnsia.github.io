@@ -75,7 +75,7 @@ export default class App extends Component{
     }
   }
   get loadingLetter() {
-    let letter = 'Hand-Stencil';
+    let letter = [...'Hand-Stencil'];
     const idx = Math.floor(Math.random() * letter.length);
     const char = letter[idx];
     letter[idx] = char === char.toLowerCase() ? char.toUpperCase() : char.toLowerCase();
