@@ -60,22 +60,26 @@ export default class App extends Component{
       const $footer = $target.querySelector(`[data-component="footer"]`);
       new Footer($footer, {});
     } else {
-      this.loading(0);
+      this.loading();
     }
   }
-  loading(count) {
+  loading() {
     const { isImported } = this.state;
     if(!isImported) {
-      const { $target } = this;
+      const { $target, loadingLetter } = this;
       const $loading = $target.querySelector('#loading');
-      const idx = count % 7;
-      let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
-      message[idx] = message[idx].toLocaleLowerCase();
-      $loading.innerHTML = message.map(v => `<h1>${v}</h1>`).join('');
+      $loading.innerHTML = `<h1>${loadingLetter}</h1>`;
       setTimeout(() => {
-        this.loading(++count);
-      }, 100);
+        this.loading();
+      }, 300);
     }
+  }
+  get loadingLetter() {
+    let letter = 'Hand-Stencil';
+    const idx = Math.floor(Math.random() * letter.length);
+    const char = letter[idx];
+    letter[idx] = char === char.toLowerCase() ? char.toUpperCase() : char.toLowerCase();
+    return letter;
   }
   changeViewHandler(view) {
     this.setState({ view });
