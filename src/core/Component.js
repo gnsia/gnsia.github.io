@@ -10,7 +10,7 @@ export default class Component {
         this.render();       
     }
     setup() {}
-    setEvent() {}   
+    setEvent() {}
     render() {
         this.$target.innerHTML = this.template();
         this.mounted();
