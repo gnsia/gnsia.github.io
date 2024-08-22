@@ -1,4 +1,4 @@
-import Loading from "../component/utils/Loading";
+import Loading from "../component/utils/Loading.js";
 
 export default class Component {
     $target;
