@@ -70,10 +70,10 @@ export default class App extends Component{
     if(!isImported) {
       const { $target } = this;
       const $loading = $target.querySelector('#loading');
-      const idx = count % 7;
-      let message = [...'Hand-Stencil'];
+      let message = [...'HAND-STENCIL'];
+      const idx = count % message.length;
       message[idx] = message[idx].toUpperCase();
-      $loading.innerHTML = `<h3>${message.join('')}</h3>`;
+      $loading.innerHTML = `<h1>${message.join('')}</h1>`;
       setTimeout(() => {
         this.loading(++count);
       }, 100);

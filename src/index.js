@@ -6,7 +6,7 @@ const importApp = async () => {
 }
 
 $root.innerHTML = `
-    <h1>Hand-Stencil</h1>
+    <h1>HAND-STENCIL</h1>
 `;
 
 importApp();
