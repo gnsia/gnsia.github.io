@@ -71,7 +71,7 @@ export default class App extends Component{
       $loading.innerHTML = `<h1>${loadingLetter}</h1>`;
       setTimeout(() => {
         this.loading();
-      }, 300);
+      }, 100);
     }
   }
   get loadingLetter() {
@@ -79,7 +79,7 @@ export default class App extends Component{
     const idx = Math.floor(Math.random() * letter.length);
     const char = letter[idx];
     letter[idx] = char === char.toLowerCase() ? char.toUpperCase() : char.toLowerCase();
-    return letter;
+    return letter.join('');
   }
   changeViewHandler(view) {
     this.setState({ view });
