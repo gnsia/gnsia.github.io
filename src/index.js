@@ -7,9 +7,7 @@ class Index {
     }
     render() {
         const { $root } = this;
-        $root.innerHTML = `
-            <h1>Hand-Stencil</h1>
-        `;
+        $root.innerHTML = `<h1>Hand-Stencil</h1>`;
     }
     async importApp() {
         const { $root } = this;

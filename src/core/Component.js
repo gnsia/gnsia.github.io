@@ -1,3 +1,5 @@
+import Loading from "../component/utils/Loading";
+
 export default class Component {
     $target;
     state;
@@ -19,6 +21,14 @@ export default class Component {
         return ``;
     }
     mounted() {}
+    loading() {
+        const { $target } = this;
+        const $loading = $target.querySelector('[data-util="loading"]');
+        if($loading) {
+            const { isImported } = this.state;
+            Loading.render($loading, isImported);
+        }
+    }
     setState(newState) {
         this.state = { ...this.state, ...newState };
         this.render();

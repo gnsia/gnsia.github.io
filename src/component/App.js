@@ -29,6 +29,7 @@ export default class App extends Component{
   }  
   template() {
     const { isImported } = this.state;
+    
     if(isImported) {
       return `
         <header data-component="header"></header>
@@ -39,14 +40,17 @@ export default class App extends Component{
       `;
     } else {
       return `
-        <div id="loading"></div>
+        <div data-util="loading"></div>
       `
     }
   }
   mounted() {
     const { view, isImported, children } = this.state;
-    const { $target, changeViewHandler } = this;
+    const { $target, changeViewHandler, loading } = this;
     const { Header, Page, Footer } = children;
+    
+    loading();
+
     if(isImported) {
       const $header = $target.querySelector(`[data-component="header"]`);
       new Header($header, { 
@@ -59,27 +63,8 @@ export default class App extends Component{
   
       const $footer = $target.querySelector(`[data-component="footer"]`);
       new Footer($footer, {});
-    } else {
-      this.loading();
     }
-  }
-  loading() {
-    const { isImported } = this.state;
-    if(!isImported) {
-      const { $target, loadingLetter } = this;
-      const $loading = $target.querySelector('#loading');
-      $loading.innerHTML = `<h1>${loadingLetter}</h1>`;
-      setTimeout(() => {
-        this.loading();
-      }, 100);
-    }
-  }
-  get loadingLetter() {
-    let letter = [...'Hand-Stencil'];
-    const idx = Math.floor(Math.random() * letter.length);
-    const char = letter[idx];
-    letter[idx] = char === char.toLowerCase() ? char.toUpperCase() : char.toLowerCase();
-    return letter.join('');
+
   }
   changeViewHandler(view) {
     this.setState({ view });
