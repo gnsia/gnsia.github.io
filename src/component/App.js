@@ -46,10 +46,10 @@ export default class App extends Component{
   }
   mounted() {
     const { view, isImported, children } = this.state;
-    const { $target, changeViewHandler, loading } = this;
+    const { $target, changeViewHandler } = this;
     const { Header, Page, Footer } = children;
     
-    loading();
+    this.loading();
 
     if(isImported) {
       const $header = $target.querySelector(`[data-component="header"]`);
