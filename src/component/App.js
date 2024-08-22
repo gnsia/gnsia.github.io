@@ -44,20 +44,6 @@ export default class App extends Component{
       `
     }
   }
-  loading(count) {
-    const { isImported } = this.state;
-    if(!isImported) {
-      const { $target } = this;
-      const $loading = $target.querySelector('#loading');
-      const idx = count % 7;
-      let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
-      message[idx] = message[idx].toLocaleLowerCase();
-      $loading.innerHTML = message.map(v => `<h3>${v}</h3>`).join('');
-      setTimeout(() => {
-        this.loading(++count);
-      }, 100);
-    }
-  }
   mounted() {
     const { view, isImported, children } = this.state;
     const { $target, changeViewHandler } = this;
@@ -78,16 +64,18 @@ export default class App extends Component{
     } else {
       this.loading(0);
     }
-
   }
-  loading(px) {
-    const { $target } = this;
+  loading(count) {
     const { isImported } = this.state;
     if(!isImported) {
-      const $laoding = $target.querySelector('[data-util="loading"]');
+      const { $target } = this;
+      const $loading = $target.querySelector('#loading');
+      const idx = count % 7;
+      let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
+      message[idx] = message[idx].toLocaleLowerCase();
+      $loading.innerHTML = message.map(v => `<h3>${v}</h3>`).join('');
       setTimeout(() => {
-        $laoding.innerHTML = `<hr width="${px}px"/>`;
-        this.loading(px+10);
+        this.loading(++count);
       }, 100);
     }
   }
