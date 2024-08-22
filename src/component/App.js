@@ -40,8 +40,22 @@ export default class App extends Component{
       `;
     } else {
       return `
-        <div data-util="loading"></div>
+        <div id="loading"></div>
       `
+    }
+  }
+  loading(count) {
+    const { isImported } = this.state;
+    if(!isImported) {
+      const { $target } = this;
+      const $loading = $target.querySelector('#loading');
+      const idx = count % 7;
+      let message = ['L', 'O', 'A', 'D', 'I', 'N', 'G'];
+      message[idx] = message[idx].toLocaleLowerCase();
+      $loading.innerHTML = message.map(v => `<h3>${v}</h3>`).join('');
+      setTimeout(() => {
+        this.loading(++count);
+      }, 100);
     }
   }
   mounted() {
@@ -49,8 +63,6 @@ export default class App extends Component{
     const { $target, changeViewHandler } = this;
     const { Header, Page, Footer } = children;
     
-    this.loading(10);
-
     if(isImported) {
       const $header = $target.querySelector(`[data-component="header"]`);
       new Header($header, { 
@@ -63,6 +75,8 @@ export default class App extends Component{
   
       const $footer = $target.querySelector(`[data-component="footer"]`);
       new Footer($footer, {});
+    } else {
+      this.loading(0);
     }
 
   }
