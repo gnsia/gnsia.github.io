@@ -12,19 +12,25 @@
 
 .wrapper {
     display: flex;
+    flex-direction: column;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    flex-direction: column;
+    height: 100%;
 }
 
 .header {
     height: 10em;
+    position: relative;
+    transform: translateY(-100%);
 }
 
 .page {
     height: auto;
     min-height: 100%;
+    padding-top: 10em;
     padding-bottom: 10em;
 }
 
