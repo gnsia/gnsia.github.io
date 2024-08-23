@@ -11,9 +11,9 @@ export default class wrapper extends Component {
     }
     template() {
         return `
-            <header data-component="header"></header>
-            <main data-component="page"></main>
-            <footer data-component="footer"></footer>
+            <header data-component="header" class="header"></header>
+            <main data-component="page" class="page"></main>
+            <footer data-component="footer" class="footer"></footer>
           `;
     }
     mounted() {

@@ -11,10 +11,25 @@
 }
 
 .wrapper {
-    height: 100%;
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-footer {
+.header {
+    height: 10em;
+}
+
+.page {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 10em;
+}
+
+.footer {
+    height: 10em;
     position: relative;
     transform: translateY(-100%);
 }
