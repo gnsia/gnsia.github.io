@@ -1,5 +1,6 @@
 .app {
     text-align: center;
+    max-width: 800px;
 }
 
 .cover {
@@ -7,4 +8,14 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.wrapper {
+	min-height: calc(100vh - 10rem); /* footer 높이를 빼준다. */
+	background: pink;
+}
+
+footer {
+	height: 10rem; /* footer 높이 */
+	background: yellow;
 }

@@ -10,6 +10,7 @@ export default class Header extends Component {
                 <a href="javascript:void(0)" data-view="${page}">${page}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
+            <hr/>
         `;
     }
     setEvent() {

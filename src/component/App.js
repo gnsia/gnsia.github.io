@@ -5,8 +5,8 @@ import Outer from "./Outer.js";
 export default class App extends Component {
   template() {
       return `
-        <div data-component="outer"></div>
-        <div data-component="wrapper"></div>
+        <div data-component="outer" class="outer"></div>
+        <div data-component="wrapper" class="wrapper"></div>
       `;
   }
   mounted() {

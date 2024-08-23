@@ -12,9 +12,7 @@ export default class wrapper extends Component {
     template() {
         return `
             <header data-component="header"></header>
-            <hr/>
             <main data-component="page"></main>
-            <hr/>
             <footer data-component="footer"></footer>
           `;
     }
