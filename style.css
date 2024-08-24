@@ -22,7 +22,7 @@
 	z-index: 9;
 }
 
-.content {
+.page {
 	min-height: calc(100% - 30px);
 	padding-top: 60px;
 }
