@@ -17,11 +17,11 @@
 .header {
 	width: 100%;
 	background-color: white;
-	height: 120px;
+	height: 90px;
 }
 
 .page {
-	min-height: calc(100% - 200px);
+	min-height: calc(100% - 150px);
 }
 
 .footer {
