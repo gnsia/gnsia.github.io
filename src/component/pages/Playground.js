@@ -19,6 +19,7 @@ export default class Playground extends Component {
         ]
     }
     mounted() {
+        const { mode } = this.state;
         if(mode === 'detail') {
             const { $target, children } = this;
             const { view } = this.state;
