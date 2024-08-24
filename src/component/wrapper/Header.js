@@ -1,26 +1,20 @@
 import Component from "../../core/Component.js";
+import Nav from "../Header/Nav.js";
+import Title from "../Header/Title.js";
 
 export default class Header extends Component {
     template() {
-        const pages = ['home', 'posts', 'playground', 'about'];
         return `
-            <h1>Hand-Stencil</h1>
-            <span>[</span>
-            ${pages.map(page => `
-                <a href="javascript:void(0)" data-view="${page}">${page}</a>
-            `).join(`<span>/</span>`)}
-            <span>]</span>
-            <hr/>
+            <div data-component="title"></div>
+            <nav data-component="nav"></nav>
         `;
     }
-    setEvent() {
+    mounted() {
         const { $target } = this;
         const { changeViewHandler } = this.props;
-        $target.addEventListener('click', ({ target }) => {
-            if(target.tagName === 'A') {
-                const { view } = target.dataset;
-                changeViewHandler(view);
-            }
-        })
+        new Title($target.querySelector('[data-component="title"]'));
+        new Nav($target.querySelector('[data-component="nav"]'), {
+            changeViewHandler
+        });
     }
 }

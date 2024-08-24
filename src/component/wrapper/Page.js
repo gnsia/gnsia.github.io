@@ -1,6 +1,5 @@
 import Component from "../../core/Component.js";
 import About from "../pages/About.js";
-import Home from "../pages/Home.js";
 import Playground from "../pages/Playground.js";
 import Posts from "../pages/Posts.js";
 
@@ -9,7 +8,6 @@ export default class Page extends Component {
     setup() {
         this.children = {
             about: About,
-            home: Home,
             playground: Playground,
             posts: Posts,
         }

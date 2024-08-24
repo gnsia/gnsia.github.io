@@ -6,7 +6,7 @@ import Page from "./wrapper/Page.js";
 export default class wrapper extends Component {
     setup() {
         this.state = {
-            view: 'home', // posts, playground, about
+            view: 'posts', // posts, playground, about
         }
     }
     template() {
