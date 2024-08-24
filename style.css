@@ -17,10 +17,12 @@
 .header {
 	position: fixed;
 	background-color: white;
+	height: 140px;
 }
 
 .page {
-	min-height: calc(100% - 60px);
+	margin-top: 140px;
+	min-height: calc(100% - 200px);
 }
 
 .footer {
