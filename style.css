@@ -1,26 +1,19 @@
 .cover {
 	animation-name: blink;
-	animation-duration: 1s;
+	animation-duration: 2s;
 	animation-iteration-count: infinite;
 }
 
 @keyframes blink {
-	0%   { opacity: 0; }
-	50%  { opacity: 1; }
-	100% { opacity: 0; }
-  }
+	0% {
+		opacity: 0;
+	}
 
-.header {
-	width: 100%;
-	background-color: white;
-	height: 90px;
-}
+	50% {
+		opacity: 1;
+	}
 
-.page {
-	min-height: calc(100% - 180px);
-}
-
-.footer {
-	width: 100%;
-	height: 60px;
+	100% {
+		opacity: 0;
+	}
 }
