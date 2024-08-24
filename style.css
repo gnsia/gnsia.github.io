@@ -15,12 +15,12 @@
 }
 
 .header {
+	position: fixed;
 	background-color: white;
 }
 
 .page {
 	min-height: calc(100% - 60px);
-	padding-top: 60px;
 }
 
 .footer {
