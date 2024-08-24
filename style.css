@@ -17,11 +17,10 @@
 .header {
 	width: 100%;
 	background-color: white;
-	height: 140px;
+	height: 120px;
 }
 
 .page {
-	padding-top: 140px;
 	min-height: calc(100% - 200px);
 }
 
