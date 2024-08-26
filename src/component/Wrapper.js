@@ -2,12 +2,14 @@ import Component from "../core/Component.js";
 import Header from "./wrapper/Header.js";
 import Footer from "./wrapper/Footer.js";
 import Page from "./wrapper/Page.js";
+import { observe } from "../core/observer.js";
 
 export default class wrapper extends Component {
     setup() {
-        this.state = {
-            view: 'posts', // posts, playground, about
-        }
+        observe(() => {
+            this.render();
+            this.setEvent();
+        });
     }
     template() {
         return `
@@ -17,22 +19,15 @@ export default class wrapper extends Component {
           `;
     }
     mounted() {
-        const { view } = this.state;
-        const { $target, changeViewHandler } = this;
-        
+        const { $target } = this;
+
         const $header = $target.querySelector(`[data-component="header"]`);
-        new Header($header, {
-            view,
-            changeViewHandler: changeViewHandler.bind(this),
-        });
+        new Header($header, {});
 
         const $page = $target.querySelector(`[data-component="page"]`);
-        new Page($page, { view });
+        new Page($page, {});
 
         const $footer = $target.querySelector(`[data-component="footer"]`);
         new Footer($footer, {});
-    }
-    changeViewHandler(view) {
-        this.setState({ view });
     }
 }

@@ -1,4 +1,5 @@
 import Component from "../../core/Component.js";
+import { store } from "../../core/store.js";
 
 export default class Nav extends Component {
     template() {
@@ -14,11 +15,10 @@ export default class Nav extends Component {
     }
     setEvent() {
         const { $target } = this;
-        const { changeViewHandler } = this.props;
         $target.addEventListener('click', ({ target }) => {
-            if(target.tagName === 'A') {
+            if (target.tagName === 'A') {
                 const { view } = target.dataset;
-                changeViewHandler(view);
+                store.setState({ view });
             }
         })
     }

@@ -2,7 +2,8 @@ import Component from "../../core/Component.js";
 import About from "../pages/About.js";
 import Playground from "../pages/Playground.js";
 import Posts from "../pages/Posts.js";
-
+import { store } from "../../core/store.js";
+import { observe } from "../../core/observer.js";
 
 export default class Page extends Component {
     setup() {
@@ -11,15 +12,19 @@ export default class Page extends Component {
             playground: Playground,
             posts: Posts,
         }
+        observe(() => {
+            this.render();
+            this.setEvent();
+        });
     }
     mounted() {
-        const { view } = this.props;
+        const { view } = store.state;
         const { $target, children } = this;
         const $child = $target.querySelector(`[data-component="${view}"]`);
         new children[view]($child, {});
     }
     template() {
-        const { view } = this.props;
+        const { view } = store.state;
         return `
                 <div data-component="${view}"></div>
             `;
