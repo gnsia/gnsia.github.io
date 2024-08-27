@@ -7,7 +7,7 @@ export default class Nav extends Component {
         return `
             <span>[</span>
             ${pages.map(page => `
-                <a href="javascript:void(0)" data-view="${page}">${page}</a>
+                <a href="javascript:void(0)" data-page-view="${page}">${page}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
             <hr/>
@@ -17,8 +17,8 @@ export default class Nav extends Component {
         const { $target } = this;
         $target.addEventListener('click', ({ target }) => {
             if (target.tagName === 'A') {
-                const { view } = target.dataset;
-                store.setState({ view });
+                const { pageView } = target.dataset;
+                store.setState({ pageView });
             }
         })
     }

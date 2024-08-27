@@ -21,7 +21,7 @@ export default class About extends Component {
         const { about } = store.state;
         const { $target, children } = this;
         const $child = $target.querySelector(`[data-component="${about}"]`);
-        new children[view]($child, {});
+        new children[about]($child, {});
     }
     template() {
         const { about } = store.state;
@@ -30,7 +30,7 @@ export default class About extends Component {
             <h2>About</h2>
             <span>[</span>
             ${children.map(child => `
-                <a href="javascript:void(0)" data-about="${child}">${child}</a>
+                <a href="javascript:void(0)" data-about-view="${child}">${child}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
             <div data-component="${about}"></div>
@@ -40,8 +40,9 @@ export default class About extends Component {
         const { $target } = this;
         $target.addEventListener('click', ({ target }) => {
             if (target.tagName === 'A') {
-                const { about } = target.dataset;
-                store.setState({ about });
+                console.log(target.dataset);
+                const { aboutView } = target.dataset;
+                store.setState({ aboutView });
             }
         });
     }

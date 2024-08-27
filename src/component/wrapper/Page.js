@@ -18,10 +18,10 @@ export default class Page extends Component {
         });
     }
     mounted() {
-        const { view } = store.state;
+        const { pageView } = store.state;
         const { $target, children } = this;
-        const $child = $target.querySelector(`[data-component="${view}"]`);
-        new children[view]($child, {});
+        const $child = $target.querySelector(`[data-component="${pageView}"]`);
+        new children[pageView]($child, {});
     }
     template() {
         const { view } = store.state;

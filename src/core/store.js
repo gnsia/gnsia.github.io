@@ -2,8 +2,9 @@ import { observable } from "./observer.js";
 
 export const store = {
     state: observable({
-        view: 'posts',
-        about: 'introduction', // introduction, biography, discography
+        pageView: 'posts',
+        aboutView: 'introduction', // introduction, biography, discography
+        postMode: 'list',
     }),
     setState(newState) {
         for (const [key, value] of Object.entries(newState)) {

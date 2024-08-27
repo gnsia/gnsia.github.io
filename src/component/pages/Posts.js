@@ -9,15 +9,16 @@ export default class Posts extends Component {
             date: '',
             view: 'list', // list, detail
         }
+
     }
     mounted() {
         const { $target, changePostInfoHandler } = this;
         const { id, date, view } = this.state;
         const $child = $target.querySelector(`[data-component="${view}"]`);
 
-        switch(view) {
+        switch (view) {
             case 'list':
-                new PostList($child, { 
+                new PostList($child, {
                     changePostInfoHandler: changePostInfoHandler.bind(this),
                 });
                 break;
