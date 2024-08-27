@@ -2,48 +2,47 @@ import Component from "../../core/Component.js";
 import Biography from "../abouts/Biography.js";
 import Discography from "../abouts/Discography.js";
 import Introduction from "../abouts/Introduction.js";
+import { store } from "../../core/store.js";
+import { observe } from "../../core/observer.js";
 
 export default class About extends Component {
     setup() {
-        this.state = {
-            view: 'introduction',
-        }
         this.children = {
             biography: Biography,
             discography: Discography,
             introduction: Introduction,
         }
+        observe(() => {
+            this.render();
+            this.setEvent();
+        })
     }
     mounted() {
-        const { view } = this.state;
+        const { about } = store.state;
         const { $target, children } = this;
-        const $child = $target.querySelector(`[data-component="${view}"]`);
+        const $child = $target.querySelector(`[data-component="${about}"]`);
         new children[view]($child, {});
     }
     template() {
-        const { view } = this.state;
+        const { about } = store.state;
         const children = ['introduction', 'biography', 'discography'];
         return `
             <h2>About</h2>
             <span>[</span>
-            ${children.map(c => `
-                <a href="javascript:void(0)" data-view="${c}">${c}</a>
+            ${children.map(child => `
+                <a href="javascript:void(0)" data-about="${child}">${child}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
-            <div data-component="${view}"></div>
+            <div data-component="${about}"></div>
         `;
     }
     setEvent() {
         const { $target } = this;
-        const changeViewHandler = this.changeViewHandler.bind(this);
         $target.addEventListener('click', ({ target }) => {
             if (target.tagName === 'A') {
-                const { view } = target.dataset;
-                changeViewHandler(view);
+                const { about } = target.dataset;
+                store.setState({ about });
             }
         });
-    }
-    changeViewHandler(view) {
-        this.setState({ view });
     }
 }
