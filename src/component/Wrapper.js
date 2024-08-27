@@ -5,12 +5,6 @@ import Page from "./wrapper/Page.js";
 import { observe } from "../core/observer.js";
 
 export default class wrapper extends Component {
-    setup() {
-        observe(() => {
-            this.render();
-            this.setEvent();
-        });
-    }
     template() {
         return `
             <header data-component="header" class="header"></header>
@@ -19,15 +13,15 @@ export default class wrapper extends Component {
           `;
     }
     mounted() {
-        const { $target } = this;
+        const { $el } = this;
 
-        const $header = $target.querySelector(`[data-component="header"]`);
+        const $header = $el.querySelector(`[data-component="header"]`);
         new Header($header, {});
 
-        const $page = $target.querySelector(`[data-component="page"]`);
+        const $page = $el.querySelector(`[data-component="page"]`);
         new Page($page, {});
 
-        const $footer = $target.querySelector(`[data-component="footer"]`);
+        const $footer = $el.querySelector(`[data-component="footer"]`);
         new Footer($footer, {});
     }
 }

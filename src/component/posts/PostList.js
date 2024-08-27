@@ -1,5 +1,6 @@
 import Component from "../../core/Component.js";
 import POST_LIST from "../../../assets/posts/POST_LIST.js";
+import { postStore, store } from "../../core/store.js";
 
 export default class PostList extends Component {
     template() {
@@ -8,9 +9,9 @@ export default class PostList extends Component {
             ${POST_LIST.map(post => `
                 <li>
                     <a href="javascript:void(0)" 
-                        data-id="${post.id}"
-                        data-date="${post.date}"
-                        data-view="detail"
+                        data-post-id="${post.id}"
+                        data-post-date="${post.date}"
+                        data-post-mode="detail"
                     >
                         ${post.title}
                     </a>
@@ -21,12 +22,11 @@ export default class PostList extends Component {
         `;
     }
     setEvent() {
-        const { $target } = this;
-        const { changePostInfoHandler } = this.props;
-        $target.addEventListener('click', ({ target }) => {
-            const { id, date, view } = target.dataset;
-            if(view === 'detail') {
-                changePostInfoHandler(id, date, view);
+        const { $el } = this;
+        $el.addEventListener('click', ({ target }) => {
+            const { postId, postDate, postMode } = target.dataset;
+            if (postMode === 'detail') {
+                postStore.setState({ postDate, postMode, postId: parseInt(postId) });
             }
         });
     }

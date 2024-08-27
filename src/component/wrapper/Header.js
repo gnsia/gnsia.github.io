@@ -10,11 +10,8 @@ export default class Header extends Component {
         `;
     }
     mounted() {
-        const { $target } = this;
-        const { changeViewHandler } = this.props;
-        new Title($target.querySelector('[data-component="title"]'));
-        new Nav($target.querySelector('[data-component="nav"]'), {
-            changeViewHandler
-        });
+        const { $el } = this;
+        new Title($el.querySelector('[data-component="title"]'));
+        new Nav($el.querySelector('[data-component="nav"]'));
     }
 }

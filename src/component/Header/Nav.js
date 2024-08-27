@@ -1,5 +1,5 @@
 import Component from "../../core/Component.js";
-import { store } from "../../core/store.js";
+import { pageStore, store } from "../../core/store.js";
 
 export default class Nav extends Component {
     template() {
@@ -7,18 +7,18 @@ export default class Nav extends Component {
         return `
             <span>[</span>
             ${pages.map(page => `
-                <a href="javascript:void(0)" data-page-view="${page}">${page}</a>
+                <a href="javascript:void(0)" data-view="${page}">${page}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
             <hr/>
         `;
     }
     setEvent() {
-        const { $target } = this;
-        $target.addEventListener('click', ({ target }) => {
+        const { $el } = this;
+        $el.addEventListener('click', ({ target }) => {
             if (target.tagName === 'A') {
-                const { pageView } = target.dataset;
-                store.setState({ pageView });
+                const { view } = target.dataset;
+                pageStore.setState({ view });
             }
         })
     }

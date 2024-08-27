@@ -3,12 +3,8 @@ import CanvasTutorial from "../playground/CanvasTutorial.js";
 
 
 export default class Playground extends Component {
-    setup() {
-        this.state = {
-            view: '', //
-            mode: 'list'
-        }
-        this.children = [
+    mounted() {
+        const children = [
             {
                 view: 'canvas-tutorial',
                 title: 'HTML Canvas를 활용하여 인터랙티브 콘텐츠 만들기',
@@ -17,13 +13,11 @@ export default class Playground extends Component {
                 component: CanvasTutorial
             }
         ]
-    }
-    mounted() {
         const { mode } = this.state;
-        if(mode === 'detail') {
-            const { $target, children } = this;
+        if (mode === 'detail') {
+            const { $el } = this;
             const { view } = this.state;
-            const $childTarget = $target.querySelector(`[data-component="${view}"]`);
+            const $childTarget = $el.querySelector(`[data-component="${view}"]`);
             const child = children.find(c => c.title === view);
             new child.component($childTarget, {});
         }
@@ -46,12 +40,12 @@ export default class Playground extends Component {
         `;
     }
     setEvent() {
-        const { $target } = this;
+        const { $el } = this;
         const changeViewHandler = this.changeViewHandler.bind(this);
-        $target.addEventListener('click', ({ target }) => {
-            if(target.tagName === 'A') {
+        $el.addEventListener('click', ({ target }) => {
+            if (target.tagName === 'A') {
                 const { view } = target.dataset;
-                changeViewHandler(view);               
+                changeViewHandler(view);
             }
         });
     }

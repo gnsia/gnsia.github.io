@@ -1,26 +1,23 @@
+import { observe } from "./observer.js";
+
 export default class Component {
-    $target;
+    $el;
     state;
     props;
-    constructor($target, props) {
-        this.$target = $target;
+    constructor($el, props) {
+        this.$el = $el;
         this.props = props;
         this.setup();
-        this.setEvent();
-        this.render();       
     }
-    setup() {}
-    setEvent() {}
-    render() {
-        this.$target.innerHTML = this.template();
-        this.mounted();
+    setup() {
+        observe(() => {
+            this.render();
+            this.setEvent();
+            this.mounted();
+        })
     }
-    template() {
-        return ``;
-    }
-    mounted() {}
-    setState(newState) {
-        this.state = { ...this.state, ...newState };
-        this.render();
-    }
+    setEvent() { }
+    render() { this.$el.innerHTML = this.template(); }
+    template() { return ``; }
+    mounted() { }
 }

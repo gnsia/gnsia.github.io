@@ -6,25 +6,19 @@ import { store } from "../../core/store.js";
 import { observe } from "../../core/observer.js";
 
 export default class About extends Component {
-    setup() {
-        this.children = {
+    mounted() {
+        const children = {
             biography: Biography,
             discography: Discography,
             introduction: Introduction,
         }
-        observe(() => {
-            this.render();
-            this.setEvent();
-        })
-    }
-    mounted() {
-        const { about } = store.state;
-        const { $target, children } = this;
-        const $child = $target.querySelector(`[data-component="${about}"]`);
-        new children[about]($child, {});
+        const { aboutView } = store.state;
+        const { $el } = this;
+        const $child = $el.querySelector(`[data-component="${aboutView}"]`);
+        new children[aboutView]($child, {});
     }
     template() {
-        const { about } = store.state;
+        const { aboutView } = store.state;
         const children = ['introduction', 'biography', 'discography'];
         return `
             <h2>About</h2>
@@ -33,12 +27,12 @@ export default class About extends Component {
                 <a href="javascript:void(0)" data-about-view="${child}">${child}</a>
             `).join(`<span>/</span>`)}
             <span>]</span>
-            <div data-component="${about}"></div>
+            <div data-component="${aboutView}"></div>
         `;
     }
     setEvent() {
-        const { $target } = this;
-        $target.addEventListener('click', ({ target }) => {
+        const { $el } = this;
+        $el.addEventListener('click', ({ target }) => {
             if (target.tagName === 'A') {
                 console.log(target.dataset);
                 const { aboutView } = target.dataset;

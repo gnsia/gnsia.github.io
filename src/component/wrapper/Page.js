@@ -2,29 +2,22 @@ import Component from "../../core/Component.js";
 import About from "../pages/About.js";
 import Playground from "../pages/Playground.js";
 import Posts from "../pages/Posts.js";
-import { store } from "../../core/store.js";
-import { observe } from "../../core/observer.js";
+import { pageStore } from "../../core/store.js";
 
 export default class Page extends Component {
-    setup() {
-        this.children = {
+    mounted() {
+        const children = {
             about: About,
             playground: Playground,
             posts: Posts,
         }
-        observe(() => {
-            this.render();
-            this.setEvent();
-        });
-    }
-    mounted() {
-        const { pageView } = store.state;
-        const { $target, children } = this;
-        const $child = $target.querySelector(`[data-component="${pageView}"]`);
-        new children[pageView]($child, {});
+        const { view } = pageStore.state;
+        const { $el } = this;
+        const $child = $el.querySelector(`[data-component="${view}"]`);
+        new children[view]($child);
     }
     template() {
-        const { view } = store.state;
+        const { view } = pageStore.state;
         return `
                 <div data-component="${view}"></div>
             `;

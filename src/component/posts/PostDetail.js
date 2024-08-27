@@ -1,75 +1,67 @@
 import Component from "../../core/Component.js";
 import POST_LIST from "../../../assets/posts/POST_LIST.js";
+import { postStore, store } from "../../core/store.js";
 
 export default class PostDetail extends Component {
-    setup() {
-        this.state = { 
-            post: null,
-            isImported: false,
-        };
-    }
     template() {
-        const { post } = this.state;
-        const { prev, next } = this;
-        if(post) {
+        const { content } = this.props;
+        const { prev, list, next } = this;
+        if (content) {
             return `
-            ${post}
-            <span>
-                [
-                ${prev} /
-                <a href="javascript:void(0)" data-view="list">list</a> /
-                ${next}
-                ]
-            </span>           
+            ${content}
+            <span>[ ${prev} / ${list} / ${next} ]</span>           
         `;
         } else {
-            return `<h3>post is coming...</h3>`
+            return `<h3 class="loading">post is coming...</h3>`
         }
     }
+    get list() {
+        return `<a href="javascript:void(0)" data-post-mode="list">list</a>`;
+    }
     get next() {
-        const { id } = this.props;
-        if(id < POST_LIST.length - 1) {
-            const post = POST_LIST.find(p => p.id === id+1);
+        const { postId } = this.props;
+        if (postId < POST_LIST.length - 1) {
+            const post = POST_LIST.find(p => p.id === postId + 1);
             return `<a href="javascript:void(0)" 
-                        data-id="${post.id}"
-                        data-date="${post.date}"
-                        data-view="detail">next</a>`;
+                        data-post-id="${post.id}"
+                        data-post-date="${post.date}"
+                        data-post-mode="detail">next</a>`;
         } else {
             return `<span>next</span>`;
         }
     }
     get prev() {
-        const { id } = this.props;
-        if(id > 0) {
-            const post = POST_LIST.find(p => p.id === id-1);
+        const { postId } = this.props;
+        if (postId > 0) {
+            const post = POST_LIST.find(p => p.id === postId - 1);
             return `<a href="javascript:void(0)" 
-                        data-id="${post.id}"
-                        data-date="${post.date}"
-                        data-view="detail">prev</a>`;
+                        data-post-id="${post.id}"
+                        data-post-date="${post.date}"
+                        data-post-mode="detail">prev</a>`;
         } else {
             return `<span>prev</span>`;
         }
     }
     setEvent() {
-        const { $target } = this;
-        const { changePostInfoHandler } = this.props;
-        $target.addEventListener('click', ({ target }) => {
-            const { id, date, view } = target.dataset;
-            if(view === 'list') {
-                changePostInfoHandler(0, '', view);
+        const { $el } = this;
+        $el.addEventListener('load', ({ target }) => {
+            console.log('postDetailTest', target);
+        })
+        $el.addEventListener('click', ({ target }) => {
+            const { postId, postDate, postMode } = target.dataset;
+            if (view === 'list') {
+                postStore.setState({ postId: 0, postDate: '', postMode: 'list', content: null });
             } else {
-                changePostInfoHandler(id, date, view);
+                postStore.setState({ postId, postDate, postMode, content: null });
             }
         });
-        this.getPost();
     }
     async getPost() {
-        const { date } = this.props;
-        const path = `../../../assets/posts/${date}/POST.js`;
-        const post = await import(path);
-        this.changePostHandler(post.default);
-    }
-    changePostHandler(post) {
-        this.setState({ post })
+        const { postDate, content } = this.props;
+        if (!content) {
+            const path = `../../../assets/posts/${postDate}/POST.js`;
+            const impoted = await import(path);
+            store.setState({ content: impoted.default });
+        }
     }
 }
