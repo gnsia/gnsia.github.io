@@ -13,6 +13,7 @@ export default class Component {
         observe(() => {
             this.render();
             this.setEvent();
+            this.dynamicImport();
             this.mounted();
         })
     }
@@ -20,4 +21,5 @@ export default class Component {
     render() { this.$el.innerHTML = this.template(); }
     template() { return ``; }
     mounted() { }
+    dynamicImport() { }
 }

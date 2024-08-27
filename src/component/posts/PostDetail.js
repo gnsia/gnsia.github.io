@@ -1,10 +1,10 @@
 import Component from "../../core/Component.js";
 import POST_LIST from "../../../assets/posts/POST_LIST.js";
-import { postStore, store } from "../../core/store.js";
+import { postStore } from "../../core/store.js";
 
 export default class PostDetail extends Component {
     template() {
-        const { content } = this.props;
+        const { content } = postStore.state;
         const { prev, list, next } = this;
         if (content) {
             return `
@@ -19,7 +19,7 @@ export default class PostDetail extends Component {
         return `<a href="javascript:void(0)" data-post-mode="list">list</a>`;
     }
     get next() {
-        const { postId } = this.props;
+        const postId = parseInt(postStore.state.postId);
         if (postId < POST_LIST.length - 1) {
             const post = POST_LIST.find(p => p.id === postId + 1);
             return `<a href="javascript:void(0)" 
@@ -31,7 +31,7 @@ export default class PostDetail extends Component {
         }
     }
     get prev() {
-        const { postId } = this.props;
+        const postId = parseInt(postStore.state.postId);
         if (postId > 0) {
             const post = POST_LIST.find(p => p.id === postId - 1);
             return `<a href="javascript:void(0)" 
@@ -43,25 +43,22 @@ export default class PostDetail extends Component {
         }
     }
     setEvent() {
-        const { $el } = this;
-        $el.addEventListener('load', ({ target }) => {
-            console.log('postDetailTest', target);
-        })
-        $el.addEventListener('click', ({ target }) => {
+        this.$el.addEventListener('click', ({ target }) => {
             const { postId, postDate, postMode } = target.dataset;
-            if (view === 'list') {
-                postStore.setState({ postId: 0, postDate: '', postMode: 'list', content: null });
+            if (postMode === 'list') {
+                postStore.setState({ postId: 0, postDate: '', postMode, content: null });
             } else {
                 postStore.setState({ postId, postDate, postMode, content: null });
             }
         });
     }
-    async getPost() {
-        const { postDate, content } = this.props;
-        if (!content) {
-            const path = `../../../assets/posts/${postDate}/POST.js`;
-            const impoted = await import(path);
-            store.setState({ content: impoted.default });
-        }
+    dynamicImport() {
+        const { content, postDate, postMode } = postStore.state;
+        if (!content && postMode === 'detail') { this.getPost(postDate) }
+    }
+    async getPost(postDate) {
+        const path = `../../../assets/posts/${postDate}/POST.js`;
+        const impoted = await import(path);
+        postStore.setState({ content: impoted.default });
     }
 }

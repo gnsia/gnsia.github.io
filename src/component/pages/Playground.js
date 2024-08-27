@@ -3,7 +3,7 @@ import CanvasTutorial from "../playground/CanvasTutorial.js";
 
 
 export default class Playground extends Component {
-    mounted() {
+    template() {
         const children = [
             {
                 view: 'canvas-tutorial',
@@ -13,18 +13,6 @@ export default class Playground extends Component {
                 component: CanvasTutorial
             }
         ]
-        const { mode } = this.state;
-        if (mode === 'detail') {
-            const { $el } = this;
-            const { view } = this.state;
-            const $childTarget = $el.querySelector(`[data-component="${view}"]`);
-            const child = children.find(c => c.title === view);
-            new child.component($childTarget, {});
-        }
-    }
-    template() {
-        const { children } = this;
-        const { view } = this.state;
         return `
             <h2>Playground</h2>
             <ol>
@@ -36,20 +24,6 @@ export default class Playground extends Component {
                 </li>
             `).join('')}
             </ol>
-            <div data-component="${view}"></div>
         `;
-    }
-    setEvent() {
-        const { $el } = this;
-        const changeViewHandler = this.changeViewHandler.bind(this);
-        $el.addEventListener('click', ({ target }) => {
-            if (target.tagName === 'A') {
-                const { view } = target.dataset;
-                changeViewHandler(view);
-            }
-        });
-    }
-    changeViewHandler(view) {
-        this.setState({ view });
     }
 }

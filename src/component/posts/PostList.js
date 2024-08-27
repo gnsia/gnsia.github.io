@@ -1,6 +1,6 @@
 import Component from "../../core/Component.js";
 import POST_LIST from "../../../assets/posts/POST_LIST.js";
-import { postStore, store } from "../../core/store.js";
+import { postStore } from "../../core/store.js";
 
 export default class PostList extends Component {
     template() {

@@ -1,13 +1,12 @@
 import { observable } from "./observer.js";
 
-export const store = {
+export const aboutStore = {
     state: observable({
-        pageView: 'posts',
-        aboutView: 'introduction', // introduction, biography, discography
+        view: 'introduction', // introduction, biography, discography
     }),
     setState(newState) {
         for (const [key, value] of Object.entries(newState)) {
-            if (!this.state[key]) continue;
+            if (!this.state.hasOwnProperty(key)) continue;
             this.state[key] = value;
         }
     }
@@ -19,7 +18,7 @@ export const pageStore = {
     }),
     setState(newState) {
         for (const [key, value] of Object.entries(newState)) {
-            if (!this.state[key]) continue;
+            if (!this.state.hasOwnProperty(key)) continue;
             this.state[key] = value;
         }
     }
@@ -34,7 +33,7 @@ export const postStore = {
     }),
     setState(newState) {
         for (const [key, value] of Object.entries(newState)) {
-            if (!this.state[key]) continue;
+            if (!this.state.hasOwnProperty(key)) continue;
             this.state[key] = value;
         }
     }

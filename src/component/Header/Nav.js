@@ -1,5 +1,5 @@
 import Component from "../../core/Component.js";
-import { pageStore, store } from "../../core/store.js";
+import { pageStore } from "../../core/store.js";
 
 export default class Nav extends Component {
     template() {

@@ -12,8 +12,7 @@ export default class Page extends Component {
             posts: Posts,
         }
         const { view } = pageStore.state;
-        const { $el } = this;
-        const $child = $el.querySelector(`[data-component="${view}"]`);
+        const $child = this.$el.querySelector(`[data-component="${view}"]`);
         new children[view]($child);
     }
     template() {
