@@ -18,22 +18,10 @@ export default class PostDetail extends Component {
     get list() {
         return `<a href="javascript:void(0)" data-post-mode="list">list</a>`;
     }
-    get next() {
+    get prev() {
         const postId = parseInt(postStore.state.postId);
         if (postId < POST_LIST.length - 1) {
             const post = POST_LIST.find(p => p.id === postId + 1);
-            return `<a href="javascript:void(0)" 
-                        data-post-id="${post.id}"
-                        data-post-date="${post.date}"
-                        data-post-mode="detail">next</a>`;
-        } else {
-            return `<span>next</span>`;
-        }
-    }
-    get prev() {
-        const postId = parseInt(postStore.state.postId);
-        if (postId > 0) {
-            const post = POST_LIST.find(p => p.id === postId - 1);
             return `<a href="javascript:void(0)" 
                         data-post-id="${post.id}"
                         data-post-date="${post.date}"
@@ -42,8 +30,21 @@ export default class PostDetail extends Component {
             return `<span>prev</span>`;
         }
     }
+    get next() {
+        const postId = parseInt(postStore.state.postId);
+        if (postId > 0) {
+            const post = POST_LIST.find(p => p.id === postId - 1);
+            return `<a href="javascript:void(0)" 
+                        data-post-id="${post.id}"
+                        data-post-date="${post.date}"
+                        data-post-mode="detail">next</a>`;
+        } else {
+            return `<span>next</span>`;
+        }
+    }
     setEvent() {
         this.$el.addEventListener('click', ({ target }) => {
+            if (target.tagName !== 'A') return;
             const { postId, postDate, postMode } = target.dataset;
             if (postMode === 'list') {
                 postStore.setState({ postId: 0, postDate: '', postMode, content: null });
