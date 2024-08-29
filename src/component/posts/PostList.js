@@ -7,7 +7,7 @@ export default class PostList extends Component {
         return `
             <ol>
             ${POST_LIST.map(post => `
-                <li class="margin flex">
+                <li class="margin">
                     <a href="javascript:void(0)" 
                         data-post-id="${post.id}"
                         data-post-date="${post.date}"
@@ -15,7 +15,7 @@ export default class PostList extends Component {
                     >
                         ${post.title}
                     </a>
-                    <i class="right">.......${post.date}</i>
+                    <i>.......${post.date}</i>
                 </li>
             `).join('')}
             </ol>

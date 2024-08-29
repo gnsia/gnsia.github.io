@@ -6,7 +6,7 @@ export default class Header extends Component {
     template() {
         return `
             <span data-component="title"></span>
-            <nav data-component="nav" class="right"></nav>
+            <nav data-component="nav" class="inline"></nav>
         `;
     }
     mounted() {

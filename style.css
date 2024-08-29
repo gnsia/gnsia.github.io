@@ -58,3 +58,8 @@
 .margin {
 	margin: 10px;
 }
+
+.current-view {
+	border: 2px solid red;
+	border-radius: 100%;
+}
