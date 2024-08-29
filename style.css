@@ -22,20 +22,35 @@
 	display: none;
 }
 
-pre {
+.block {
+	display: block;
+}
+
+.inline {
+	display: inline;
+}
+
+.flex {
+	display: flex;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.code-box {
 	padding: 10px 10px 10px 10px;
 	box-shadow: 2px 2px 2px 2px gray;
 }
 
-.pages {
-	max-width: 800px;
-	margin: 0 auto;
+.max-width {
+	max-width: 750px;
 }
 
-.post-detail {
+.full-width {
 	width: 100%;
 }
 
-li {
+.margin {
 	margin: 10px;
 }

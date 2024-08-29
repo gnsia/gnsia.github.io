@@ -7,7 +7,7 @@ export default class PostList extends Component {
         return `
             <ol>
             ${POST_LIST.map(post => `
-                <li>
+                <li class="margin flex">
                     <a href="javascript:void(0)" 
                         data-post-id="${post.id}"
                         data-post-date="${post.date}"

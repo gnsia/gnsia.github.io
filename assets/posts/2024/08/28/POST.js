@@ -16,7 +16,7 @@ export default `
 </li>
 </ul>
 <p>highlighting test:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">'bar'</span>;
+<pre class="code-box"><code class="lang-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">'bar'</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span><span class="hljs-params">(s)</span> </span>{
    <span class="hljs-keyword">return</span> foo + <span class="hljs-string">':'</span> + s;

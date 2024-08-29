@@ -18,7 +18,7 @@ export default class Page extends Component {
     template() {
         const { view } = pageStore.state;
         return `
-                <div data-component="${view}" class="pages"></div>
+                <div data-component="${view}" class="max-width center"></div>
             `;
 
     }
