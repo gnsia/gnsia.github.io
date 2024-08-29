@@ -5,8 +5,8 @@ import Title from "../Header/Title.js";
 export default class Header extends Component {
     template() {
         return `
-            <div data-component="title"></div>
-            <nav data-component="nav"></nav>
+            <span data-component="title"></span>
+            <nav data-component="nav" class="right"></nav>
         `;
     }
     mounted() {

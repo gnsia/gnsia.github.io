@@ -5,20 +5,13 @@ import PostList from "../posts/PostList.js";
 
 export default class Posts extends Component {
     mounted() {
+        const children = {
+            list: PostList,
+            detail: PostDetail
+        }
         const { $el } = this;
         const { postMode } = postStore.state;
-        const $child = $el.querySelector(`[data-component="${postMode}"]`);
-        switch (postMode) {
-            case 'list':
-                new PostList($child, {});
-                break;
-            case 'detail':
-                new PostDetail($child, {});
-                break;
-            default:
-                //alert(`${postMode} is not available keyword reload please!`);
-                break;
-        }
+        new children[postMode]($el.querySelector(`[data-component="${postMode}"]`));
     }
     template() {
         const { postMode } = postStore.state;
