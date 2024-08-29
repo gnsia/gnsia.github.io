@@ -1,3 +1,7 @@
+.app {
+	max-width: 800px;
+}
+
 .loading {
 	animation-name: blink;
 	animation-duration: 2s;
@@ -25,4 +29,8 @@
 pre {
 	padding: 10px 10px 10px 10px;
 	box-shadow: 2px 2px 2px 2px gray;
+}
+
+.post-detail {
+	width: 100%;
 }
