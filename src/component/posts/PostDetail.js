@@ -8,7 +8,7 @@ export default class PostDetail extends Component {
         const { prev, list, next } = this;
         if (content) {
             return `
-            <div class="post-content">
+            <div class="content">
                 ${content}
             </div>
             <span>[ ${prev} / ${list} / ${next} ]</span>           

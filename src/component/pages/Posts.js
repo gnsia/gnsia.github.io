@@ -24,7 +24,7 @@ export default class Posts extends Component {
         const { postMode } = postStore.state;
         return `
             <h2>Posts</h2>
-            <div data-component="${postMode}"></div>
+            <div data-component="${postMode}" class="fit-parent"></div>
         `;
     }
 }
