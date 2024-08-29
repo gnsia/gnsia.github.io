@@ -75,3 +75,11 @@
 	border: 2px solid red;
 	border-radius: 100%;
 }
+
+main {
+	min-height: calc(100vh - 9rem);
+}
+
+footer {
+	height: 3rem;
+}
