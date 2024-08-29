@@ -38,6 +38,10 @@
 	margin: 0 auto;
 }
 
+.right {
+	margin-left: auto;
+}
+
 .code-box {
 	padding: 10px 10px 10px 10px;
 	box-shadow: 2px 2px 2px 2px gray;

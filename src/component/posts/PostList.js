@@ -15,7 +15,7 @@ export default class PostList extends Component {
                     >
                         ${post.title}
                     </a>
-                    .......<i>${post.date}</i>
+                    <i class="right">.......${post.date}</i>
                 </li>
             `).join('')}
             </ol>
