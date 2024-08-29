@@ -7,7 +7,9 @@ export default class wrapper extends Component {
     template() {
         return `
             <header data-component="header" class="flex"></header>
+            <hr />
             <main data-component="page" class="page"></main>
+            <hr />
             <footer data-component="footer" class="footer"></footer>
           `;
     }
