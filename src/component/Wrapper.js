@@ -6,7 +6,7 @@ import Page from "./wrapper/Page.js";
 export default class wrapper extends Component {
     template() {
         return `
-            <header data-component="header" class="header"></header>
+            <header data-component="header" class="flex"></header>
             <main data-component="page" class="page"></main>
             <footer data-component="footer" class="footer"></footer>
           `;
