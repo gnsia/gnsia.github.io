@@ -6,11 +6,11 @@ import Page from "./wrapper/Page.js";
 export default class wrapper extends Component {
     template() {
         return `
-            <header data-component="header"></header>
+            <header data-component="header" class="flex align-center justify-between"></header>
             <hr />
-            <main data-component="page"></main>
+            <main data-component="page" class="flex"></main>
             <hr />
-            <footer data-component="footer"></footer>
+            <footer data-component="footer" class="flex justify-center"></footer>
           `;
     }
     mounted() {

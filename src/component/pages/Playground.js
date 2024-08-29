@@ -14,7 +14,6 @@ export default class Playground extends Component {
             }
         ]
         return `
-            <h2>Playground</h2>
             <ol>
             ${children.map(c => `
                 <li>

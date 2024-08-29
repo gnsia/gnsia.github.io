@@ -20,13 +20,14 @@ export default class About extends Component {
         const { view } = aboutStore.state;
         const children = ['introduction', 'biography', 'discography'];
         return `
-            <h2>About</h2>
-            <span>[</span>
-            ${children.map(child => `
+            <div class="fit-parent">
+                <span>[</span>
+                ${children.map(child => `
                 <a href="javascript:void(0)" data-view="${child}">${child}</a>
-            `).join(`<span>/</span>`)}
-            <span>]</span>
-            <div data-component="${view}"></div>
+                `).join(`<span>/</span>`)}
+                <span>]</span>
+            </div>
+            <div data-component="${view}" class="fit-parent"></div>
         `;
     }
     setEvent() {
