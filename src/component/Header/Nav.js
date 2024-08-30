@@ -1,5 +1,5 @@
 import Component from "../../core/Component.js";
-import { pageStore } from "../../core/store.js";
+import { pageStore, postStore } from "../../core/store.js";
 
 export default class Nav extends Component {
     template() {
@@ -25,6 +25,7 @@ export default class Nav extends Component {
             if (target.tagName === 'A') {
                 const { view } = target.dataset;
                 pageStore.setState({ view });
+                postStore.setState({ postId: 0, postDate: '', postMode: 'list', content: null });
             }
         })
     }

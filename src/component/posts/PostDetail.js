@@ -11,7 +11,7 @@ export default class PostDetail extends Component {
             <div class="content">
                 ${content}
             </div>
-            <span>[ ${prev} / ${list} / ${next} ]</span>           
+            <span class="flex justify-between">[ ${prev} / ${list} / ${next} ]</span>           
         `;
         } else {
             return `<h3 class="loading">post is coming...</h3>`

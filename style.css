@@ -1,3 +1,7 @@
+.app {
+	margin: 10px;
+}
+
 .loading {
 	animation-name: blink;
 	animation-duration: 2s;
@@ -30,8 +34,17 @@
 	display: inline;
 }
 
+.sticky {
+	position: fixed;
+}
+
 .flex {
 	display: flex;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
 }
 
 .align-center {
@@ -76,10 +89,18 @@
 	border-radius: 100%;
 }
 
+.vertical {
+	writing-mode: vertical-rl;
+}
+
+header {
+	height: 50px
+}
+
 main {
-	min-height: calc(100vh - 9rem);
+	min-height: calc(100% - 150px);
 }
 
 footer {
-	height: 3rem;
+	height: 50px;
 }
