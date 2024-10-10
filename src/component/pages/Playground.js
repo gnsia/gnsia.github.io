@@ -5,7 +5,7 @@ import Canvas from "../playground/Canvas.js";
 export default class Playground extends Component {
     template() {
         return `
-            <canvas id="canvas"></canvas>
+            <canvas id="canvas" width="300" height="300"></canvas>
         `;
     }
     mounted() {
