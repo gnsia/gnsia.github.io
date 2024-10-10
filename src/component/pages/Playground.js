@@ -5,17 +5,15 @@ import Canvas from "../playground/Canvas.js";
 export default class Playground extends Component {
     template() {
         return `
-            <div id="canvas-wrap" style="width: 100%; height: 100%">
-                <canvas id="myCanvas"></canvas>
-            </div>
+            <canvas id="myCanvas"></canvas>
         `;
     }
     mounted() {
         const canvas = document.getElementById('myCanvas');
-        const parent = document.getElementById('canvas-wrap');
         const context = canvas.getContext('2d');
 
         function resizeCanvas() {
+            alert($target.clientHeight, $target.clientWidth);
             canvas.width = parent.clientWidth;
             canvas.height = parent.clientHeight;
             
