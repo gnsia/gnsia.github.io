@@ -5,7 +5,7 @@ import Canvas from "../playground/Canvas.js";
 export default class Playground extends Component {
     template() {
         return `
-            <div id="canvas-wrap" class="max-width">
+            <div id="canvas-wrap" style="width: 100%; height: 100%">
                 <canvas id="myCanvas"></canvas>
             </div>
         `;
