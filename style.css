@@ -75,7 +75,9 @@
 .max-width {
 	max-width: 750px;
 }
-
+.full-height {
+	height: 100%;
+}
 .fit-parent {
 	width: 100%;
 }
