@@ -9,10 +9,11 @@ export default class Playground extends Component {
         `;
     }
     mounted() {
+        const { $target } = this;
         var canvas = document.getElementById("canvas");
         if (canvas.getContext) {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = $target.innerWidth;
+            canvas.height = $target.innerHeight;
             
             var ctx = canvas.getContext("2d");
 
