@@ -12,7 +12,7 @@ export default class Playground extends Component {
     }
     mounted() {
         const canvas = document.getElementById('myCanvas');
-        const parent = document.getElementById('parent');
+        const parent = document.getElementById('canvas-wrap');
         const context = canvas.getContext('2d');
 
         function resizeCanvas() {
