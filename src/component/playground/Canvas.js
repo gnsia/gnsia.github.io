@@ -1,8 +1,11 @@
 export default class Canvas {
-    $canvas;
-    props;
-    constructor($canvas, props) {
-        const ctx = $canvas.getContext('2d');
+    ctx;
+    constructor(ctx) {
+        this.ctx = ctx;
+        draw();
+    }
+    draw() {
+        const { ctx } = this;
         ctx.fillStyle = "rgb(200,0,0)";
         ctx.fillRect(10, 10, 50, 50);
 
