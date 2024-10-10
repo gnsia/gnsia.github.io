@@ -6,7 +6,7 @@ export default class Playground extends Component {
     template() {
         return `
             <div id="canvas-wrap" style="width: 100vw; height: 100vh;">
-                <canvas id="canvas"></canvas>
+                <canvas id="myCanvas"></canvas>
             </div>
         `;
     }
