@@ -9,8 +9,7 @@ export default class Playground extends Component {
         `;
     }
     mounted() {
-        const { $target } = this;
-        var canvas = $target.getElementById("canvas");
+        var canvas = document.getElementById("canvas");
         
         var ctx = canvas.getContext("2d");
         ctx.beginPath();
