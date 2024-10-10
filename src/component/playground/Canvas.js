@@ -1,12 +1,12 @@
-import Component from "../../core/Component.js";
+export default class Canvas {
+    $canvas;
+    props;
+    constructor($canvas, props) {
+        const ctx = $canvas.getContext('2d');
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect(10, 10, 50, 50);
 
-export default class Canvas extends Component {
-    setEvent() {
-        alert('hello I am Canvas');
-    }
-    template() {
-        return `
-            <h3>Canvas</h3>
-        `;
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.fillRect(30, 30, 50, 50);
     }
 }
