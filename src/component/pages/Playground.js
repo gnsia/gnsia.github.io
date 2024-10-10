@@ -5,22 +5,37 @@ import Canvas from "../playground/Canvas.js";
 export default class Playground extends Component {
     template() {
         return `
-            <canvas id="canvas"></canvas>
+            <div id="canvas-wrap" style="width: 100vw; height: 100vh;">
+                <canvas id="canvas"></canvas>
+            </div>
         `;
     }
     mounted() {
-        const { $target } = this;
-        var canvas = document.getElementById("canvas");
+        const canvas = document.getElementById('myCanvas');
+        const parent = document.getElementById('parent');
+        const context = canvas.getContext('2d');
 
-        // canvas.height = $target.clientHeight;
-        // canvas.width = $target.clientWidth;
+        function resizeCanvas() {
+            canvas.width = parent.clientWidth;
+            canvas.height = parent.clientHeight;
+            
+            // 여기에서 그림을 다시 그리면 돼
+            context.clearRect(0, 0, canvas.width, canvas.height);  // 기존 그림 지우기
+            drawSomething();  // 원하는 그림 그리기 함수
+        }
 
-        var ctx = canvas.getContext("2d");
+        function drawSomething() {
+            // 예시로 원 그리기
+            context.beginPath();
+            context.arc(canvas.width / 2, canvas.height / 2, 50, 0, Math.PI * 2);
+            context.fillStyle = 'blue';
+            context.fill();
+        }
 
-        ctx.fillStyle = "rgb(200,0,0)";
-        ctx.fillRect(10, 10, 50, 50);
+        // 초기 canvas 사이즈 설정
+        resizeCanvas();
 
-        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-        ctx.fillRect(30, 30, 50, 50);
+        // 브라우저 크기가 변경될 때마다 canvas 크기 조정
+        window.addEventListener('resize', resizeCanvas);
     }
 }
