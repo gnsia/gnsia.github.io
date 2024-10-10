@@ -1,7 +1,7 @@
 import Component from "../../core/Component.js";
 
 export default class Canvas extends Component {
-    setup() {
+    setEvent() {
         alert('hello I am Canvas');
     }
     template() {
