@@ -4,11 +4,12 @@ import { postStore } from "../../core/store.js";
 
 export default class PostDetail extends Component {
     template() {
-        const { content } = postStore.state;
+        const { content, postDate } = postStore.state;
         const { prev, list, next } = this;
         if (content) {
             return `
             <div class="content">
+                ${postDate}
                 ${content}
             </div>
             <span class="flex justify-between">[ ${prev} / ${list} / ${next} ]</span>           
