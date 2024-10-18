@@ -11,7 +11,7 @@ export default class About extends Component {
             discography: DISCOGRAPHY.default,
             introduction: INTRODUCTION.default,
         }
-        alert(INTRODUCTION.default);
+        alert(INTRODUCTION);
     }
     template() {
         const { content } = this;
