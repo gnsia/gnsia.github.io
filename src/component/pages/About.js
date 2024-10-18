@@ -1,33 +1,38 @@
 import Component from "../../core/Component.js";
 import { aboutStore } from "../../core/store.js";
-import INTRODUCTION from "../../../assets/about/INTRODUCTION.js"
-import PORTPOLIO from "../../../assets/about/PORTPOLIO.js";
-import DISCOGRAPHY from "../../../assets/about/DISCOGRAPHY.js";
 
 export default class About extends Component {
-    setup() {
-        this.content = {
-            portpolio: PORTPOLIO.default,
-            discography: DISCOGRAPHY.default,
-            introduction: INTRODUCTION.default,
-        }
-        alert(INTRODUCTION);
+    dynamicImport() {
+        const { view } = aboutStore.state;
+        if (view) { this.getContent(view) }
+    }
+    async getContent(view) {
+        const path = `../../../assets/about/${view}.js`;
+        const impoted = await import(path);
+        aboutStore.setState({ content: impoted.default });
     }
     template() {
-        const { content } = this;
-        const { view } = aboutStore.state;
-        return `
+        const aboutList = ['Introduction', 'Portpolio', 'Discography'];
+        const { content, view } = aboutStore.state;
+        if (content) {
+            return `
             <div class="fit-parent">
                 <span>[</span>
-                ${Object.keys(content).map(child => `
-                <a href="javascript:void(0)" data-view="${child}">${child}</a>
+                ${aboutList.map(v => `
+                <a href="javascript:void(0)" 
+                    data-view="${v}"
+                    ${view === v ? 'class="current-view"' : ''}
+                    >${v}</a>
                 `).join(`<span>/</span>`)}
                 <span>]</span>
             </div>
             <div class="fit-parent">
-                ${content[view]}
-            </div>
+                ${content}
+            </div>           
         `;
+        } else {
+            return `<h3 class="loading">It's coming...</h3>`
+        }
     }
     setEvent() {
         const { $el } = this;
