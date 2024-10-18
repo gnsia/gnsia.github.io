@@ -12,19 +12,13 @@ export default class About extends Component {
             introduction: INTRODUCTION,
         }
     }
-    mounted() {
-        const children = {
-
-        }
-    }
     template() {
         const { content } = this;
         const { view } = aboutStore.state;
-        const children = ['introduction', 'biography', 'discography'];
         return `
             <div class="fit-parent">
                 <span>[</span>
-                ${children.map(child => `
+                ${Object.keys(content).map(child => `
                 <a href="javascript:void(0)" data-view="${child}">${child}</a>
                 `).join(`<span>/</span>`)}
                 <span>]</span>
