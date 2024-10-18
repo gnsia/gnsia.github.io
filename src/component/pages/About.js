@@ -7,10 +7,11 @@ import DISCOGRAPHY from "../../../assets/about/DISCOGRAPHY.js";
 export default class About extends Component {
     setup() {
         this.content = {
-            portpolio: PORTPOLIO,
-            discography: DISCOGRAPHY,
-            introduction: INTRODUCTION,
+            portpolio: PORTPOLIO.default,
+            discography: DISCOGRAPHY.default,
+            introduction: INTRODUCTION.default,
         }
+        alert(INTRODUCTION, INTRODUCTION.default);
     }
     template() {
         const { content } = this;
